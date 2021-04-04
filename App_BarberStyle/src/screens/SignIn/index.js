@@ -7,8 +7,7 @@ import { Container } from './style';
 export default function SignIn({navigation}) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home</Text>
-        <Button title="OK" onPress={ () => navigation.navigate('AdmHome') }/>
+        <Text>Logon</Text>
         <Button title="Cadastro" onPress={ () => navigation.navigate('SignUp') }/>
       </View>
     );
