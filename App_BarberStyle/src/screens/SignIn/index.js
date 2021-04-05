@@ -1,15 +1,40 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import { Container } from './style';
+import { View, Text, Button , TextInput , StyleSheet} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import { color } from 'react-native-reanimated';
+import { 
+  Container, 
+  Title,
+  CustomButton,
+  CustomButtonText,
+  SingButtonTextBold,
+  SingButtonArea,
+  InputArea,
+  SignInput,
+ } from './style';
 
 
 
 export default function SignIn({navigation}) {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Logon</Text>
-        <Button title="Cadastro" onPress={ () => navigation.navigate('SignUp') }/>
-      </View>
+        <Container>
+          <Title>BarberMob</Title>
+
+          <InputArea>
+          
+          <SignInput/>
+          <SignInput/>
+
+          <CustomButton >
+            <CustomButtonText>Login</CustomButtonText>
+          </CustomButton>
+          </InputArea>
+
+          <SingButtonArea>
+            <SingButtonTextBold>Cadastre-se</SingButtonTextBold>
+          </SingButtonArea>
+        </Container>
     );
   }
   
+
