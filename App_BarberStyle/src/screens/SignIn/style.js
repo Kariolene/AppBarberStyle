@@ -36,7 +36,7 @@ width: 150px;
 border-radius: 30px;
 justify-content: center;
 align-items: center;
-margin: 10px;
+margin: 30px;
 `;
 
 /*Texto: Login do botão personalizado da tela de logon */
@@ -51,8 +51,8 @@ font-weight: bold;
 export const SingButtonArea = styled.TouchableOpacity`
 flex-direction: row;
 justify-content: center;
-margin-top: 50px;
-margin-bottom:20px;
+margin-top: 15px;
+
 `;
 
 /*Texto link para a tela de cadastro */

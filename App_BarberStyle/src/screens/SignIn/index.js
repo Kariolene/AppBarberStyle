@@ -19,7 +19,7 @@ import {
 export default function SignIn({navigation}){
 
 /*Hooks que permitem digitar e-mail/senha na tela ou alterar o que foi digitado*/
-  const [emailCampo, setEmailCampo] = useState('kariolene@gmail.com');
+  const [emailCampo, setEmailCampo] = useState('');
   const [senhaCampo, setSenhaCampo] = useState('');
   
 /*Ação do botão de login do usuário*/
@@ -56,6 +56,7 @@ export default function SignIn({navigation}){
              value={senhaCampo}
              onChangeText={t=>setSenhaCampo(t)}
              password={true}
+            
              />
           
            {/* Botão de login personalizado*/}

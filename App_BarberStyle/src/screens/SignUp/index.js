@@ -1,40 +1,64 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
-import { Container } from './style';
+import { View, Text,StatusBar, Button, StyleSheet, TextInput } from 'react-native';
+import { 
+  Container ,
+  CustomButtonText,
+  CustomButton,
+  SingButtonTextBold,
+  SingButtonArea
+} from './style';
+
 
 
 
 export default function SignUp({navigation}) {
+
+
+  const handlerButtonSalvarCadastro = () =>{
+
+  };
+
     return (
-      <View style={style.container}>
+
+      <Container>
+
 
          <Text style={style.title}>BarberStyle</Text>
-
-        <View style={style.subContainer}>
-          <Text style={style.subTitle}>Cadastro</Text>
-        </View>
+         <Text style={style.subTitle}>Cadastro</Text>
         
          {/*Container com inputs de cadastro*/}
         <View style={style.subContainer}>
+          
           <TextInput
           placeholder={'Nome '}
-
+          style={style.containerInput}
+          keyboardType={'default'}
           /> 
-          <TextInput
-          placeholder={'E-mail'}
 
+          <TextInput
+          placeholder={'name@example.com'}
+          style={style.containerInput}
+          keyboardType={'email-address'}
           />
 
           <TextInput
           placeholder={'Senha'}
-          
+          style={style.containerInput}
+          keyboardType={'numeric'}
+          secureTextEntry={true}
           />
+
         </View>
 
-        <Button title="Salvar" onPress={ () => navigation.navigate('SignIn') }/>
+        <CustomButton onPress={ () => navigation.navigate('SignIn') }>
+          <CustomButtonText>Cadastrar</CustomButtonText>
+        </CustomButton>
 
-        <Button title="Logon" onPress={ () => navigation.navigate('SignIn') }/>
-      </View>
+        <SingButtonArea onPress={ () => navigation.navigate('SignIn') }>
+        <SingButtonTextBold>Fazer Login</SingButtonTextBold>
+        </SingButtonArea>
+        
+        </Container>
     );
   }
   
@@ -42,39 +66,63 @@ export default function SignUp({navigation}) {
   const style = StyleSheet.create({
 
     /*Style para o bady*/
-    container:{
-      flex: 1, 
-      alignItems:'center', 
-      justifyContent:'center',
-      backgroundColor: '#0F0F0E',
-      opacity: 80,
-    },
 
     /*Style para o titulo da screen*/
     title:{
+      marginTop:60,
       color: '#FFC82C',
       fontFamily: 'Serif',
       fontSize: 45,
+      padding: 20,
     },
 
     /*Style para o subtitulo da screen*/
     subTitle:{
       color: '#FFC82C',
       fontFamily: 'Serif',
-      fontSize: 20,
+      fontSize: 30,
+      fontWeight: 'bold',
+      //marginTop:30,
     },
 
     subContainer:{
       alignItems:'center', 
       justifyContent:'center',
-     // backgroundColor: '#FFC82C',
-      padding: 50,
+      padding: 10,
     },
 
     containerInput:{
-      alignItems:'center', 
+      placeholderTextColor:'#FFC82C',
+      borderColor: 'gray',
+      borderWidth: 1,
+      borderRadius: 30,
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 260,
+      padding: 15,
+      margin: 5,
+      color:'#FFC82C',
+      fontWeight: 'bold',
+    },
+
+    buttonSalvar:{
+     /* backgroundColor:'#FFC82C',
+      height: 40,
+      width: 150,
+      borderRadius: 30,
+      justifyContent: 'center',
+      alignItems: 'center',
+      margin: 10,*/
+      flexDirection: 'row',
       justifyContent:'center',
-      placeholderTextColor = '#0F0F0E'
+      marginTop: 50,
+      marginBottom:20,
+      textDecoration: 'none',
+      color: '#A6A583',
+      fontFamily: 'sans-serif',
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginLeft: 5,
     }
 
   });
