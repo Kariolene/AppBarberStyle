@@ -25,7 +25,7 @@ export default ({placeholder, value, onChangeText, password}) =>{
     return(
         <InputArea>
         <Input 
-          style={{color: "#FFC82C",selectionColor:"#0F0F0E",fontWeight: 'bold',}}
+          style={{color: "#FFC82C",selectionColor:"#0F0F0E"}}
           placeholder={placeholder}
           placeholderTextColor = "#FFC82C"
           value={value}

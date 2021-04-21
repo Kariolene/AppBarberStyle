@@ -1,5 +1,5 @@
 import React, { useState }  from 'react';
-import { View, Text,StatusBar, Button, StyleSheet, TextInput } from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
 import Api from '../../services/Api';
 import { 
   Container ,
@@ -12,7 +12,7 @@ import {
 
 
 
-export default function SignUp({navigation}) {
+export default function PerfilUser({navigation}) {
 
   /*Hooks que permitem digitar campos da tela*/
   const [emailField, setEmailField]       = useState('');
@@ -20,23 +20,19 @@ export default function SignUp({navigation}) {
   const [passwordField, setPasswordField] = useState('');
 
   const handlerButtonCadastrar = async () =>{
-
+  
     if(emailField != '' && nameField != '' && passwordField != '' ){
 
-      /*inserir na tebela de usuários*/
+      /*Salvando o cadastro na api*/
       let req = await Api.signUp(emailField, nameField, passwordField);
       if(req != ''){
 
-      alert("Cadastro realizado"+", seu usuário é:"+req.id);
+      alert("Cadastro realizado com sucesso!!");
 
           /*navegar para visualizar o perfil*/
           navigation.reset({
-            routes: [{name: 'HomeUser'}]
+            routes: [{name: 'PersilUser'}]
         });
-           
-        //inserir na tabela de autenticação
-        var userID = req.id;
-        let req2 = await Api.signIn(emailField, passwordField);
        
       } else {
         alert("Verifique os dados no seu cadastro");
@@ -48,13 +44,14 @@ export default function SignUp({navigation}) {
 
   };
 
+  
+
     return (
 
       <Container>
 
-
          <Text style={style.title}>BarberStyle</Text>
-         <Text style={style.subTitle}>Cadastro</Text>
+         <Text style={style.subTitle}>Meu Perfil</Text>
         
          {/*Container com inputs de cadastro*/}
         <View style={style.subContainer}>
