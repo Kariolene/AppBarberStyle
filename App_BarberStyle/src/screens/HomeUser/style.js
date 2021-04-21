@@ -65,29 +65,4 @@ font-weight: bold;
 margin-left: 5px;
 `;
 
-/*titulo da Home*/
-export const HeaderTitle = styled.Text` 
-color: #FFF;
-font-family: sans-serif;
-font-size: 24px;
-font-weight: bold;
-width: 250px;
-`;
-/*Area da home*/
 
-export const HeaderArea = styled.Text` 
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-`;
-
-/*Botão de pesquisar*/
-export const SearchButton = styled.TouchableOpacity`
-    width: 26px;
-    height: 26px;
-`;
-/*Barbeiros*/
-export const ListArea = styled.View`
-    margin-top: 30px;
-    margin-bottom: 30px;
-`;
