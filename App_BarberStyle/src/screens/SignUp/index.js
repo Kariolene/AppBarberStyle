@@ -31,7 +31,7 @@ export default function SignUp({navigation}) {
 
           /*navegar para visualizar o perfil*/
           navigation.reset({
-            routes: [{name: 'PerfilUser'}]
+            routes: [{name: 'HomeUser'}]
         });
            
         //inserir na tabela de autenticação

@@ -3,41 +3,7 @@ const BASE_API='https://607a5bfdbd56a60017ba29de.mockapi.io/api';
 
 export default {
 
-   /* operacaoUser: async (name,email,password,screenName,operacao) => {
-        
-        var link ;
-
-        if (screenName == 'SignIn'){
-          link = '/appBarberStyle/signIn';
-
-        }else if (screenName == 'SignUp' || screenName == 'PerfilUser'){
-          link = '/appBarberStyle/user'; 
-
-        }else {
-           
-        }
-  
-        if(link != ''){
-
-        const BASE_API = "https://607a5bfdbd56a60017ba29de.mockapi.io/api" + "/appBarberStyle/signIn";//teste
-         
-        const req = await fetch(`${BASE_API}`,{
-              method: {operacao},
-              headers: {
-                  Accept:'application/json',
-                  'Content-Type': 'application/json'
-              },
-     
-              body: JSON.stringify({name,email,password})
-        });
-
-           const json = await req.json();
-           return json;
-
-        }
-
-       },
-*/
+   /*Cadastrar autenticação */
     signIn: async (email,password) => {
     
     var link = '/appBarberStyle/signIn/';
@@ -53,7 +19,6 @@ export default {
      });
         const json = await req.json();
         return json;
-
     },
 
     getUser: async(userID)=>{
@@ -110,8 +75,7 @@ export default {
         
     },
 
-
-
+    /*
     perfilUserAtualize: async (email,name,password) => {
         const req = await fetch(`${BASE_API}/appBarberStyle/user`,{
             method: 'POST',
@@ -136,6 +100,7 @@ export default {
       });
          const json = await req.json();
          return json;
-    }
+    }*/
+
 
 };

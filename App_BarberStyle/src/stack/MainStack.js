@@ -3,7 +3,7 @@ import React from 'react';
 import SignIn from '../screens/SignIn';
 import SignUp from '../screens/SignUp';
 import HomeUser from '../screens/HomeUser';
-import PerfilUser from '../screens/PerfilUser/perfilUserIndex';
+import PerfilUser from '../screens/PerfilUser';
 
 
 
