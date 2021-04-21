@@ -1,15 +1,41 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import { Container } from './style';
+import { View, Text, Button, TextInput} from 'react-native';
+import { 
+  Container, 
+  Title,
+  CustomButton,
+  CustomButtonText,
+  SingButtonTextBold,
+  SingButtonArea,
+  InputArea,
+  HeaderArea,
+  HeaderTitle,
+  SearchButton,
+  ListArea
 
+ } from './style';
+//import SearchIcon from '../../assets/search.svg'
+//import Barbeiro from '../../components/Barbeiro'
 
 
 export default function HomeUser({navigation}) {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home</Text>
-        <Button title="Logon" onPress={ () => navigation.navigate('SignIn') }/>
-      </View>
+      <Container>
+        <Text>
+          HomeUser
+        </Text>
+          {/*<HeaderArea>
+            <HeaderTitle>
+              Encontre Seu Barbeiro Favorito com um só clique
+            </HeaderTitle>
+            <SearchButton>    
+                       
+            </SearchButton>            
+          </HeaderArea>
+          <ListArea>
+            
+          </ListArea>*/}
+      </Container>
     );
   }
   

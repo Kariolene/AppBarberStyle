@@ -1,5 +1,5 @@
 const BASE_API='https://607a5bfdbd56a60017ba29de.mockapi.io/api';
-
+const DATABASE_API = 'https://60807fcea5be5d00176ddc15.mockapi.io/Api/appBarberStyle/barber/barber'
 
 export default {
 
@@ -74,6 +74,7 @@ export default {
          return json;
         
     },
+    
 
     /*
     perfilUserAtualize: async (email,name,password) => {
