@@ -6,11 +6,11 @@ import UserContextProvider from './src/contexts/UserContext';
 
 export default function App(){
   return (
-     <UserContextProvider>
+     //<UserContextProvider>
      <NavigationContainer>
        <MainStack/>
      </NavigationContainer>
-     </UserContextProvider>
+     //</UserContextProvider>
   );
 }
 

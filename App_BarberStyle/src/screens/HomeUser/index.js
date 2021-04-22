@@ -1,4 +1,5 @@
 import * as React from 'react';
+<<<<<<< Updated upstream
 import { View, Text, Button, TextInput} from 'react-native';
 import { 
   Container, 
@@ -12,6 +13,11 @@ import {
   HeaderTitle,
   SearchButton,
   ListArea
+=======
+import { ImageBackground } from 'react-native';
+import { View, Text, Button} from 'react-native';
+import { Container } from './style';
+>>>>>>> Stashed changes
 
  } from './style';
 //import SearchIcon from '../../assets/search.svg'
@@ -20,6 +26,7 @@ import {
 
 export default function HomeUser({navigation}) {
     return (
+<<<<<<< Updated upstream
       <Container>
         <Text>
           HomeUser
@@ -36,6 +43,14 @@ export default function HomeUser({navigation}) {
             
           </ListArea>*/}
       </Container>
+=======
+      <View style={{display:"flex", justifyContent:"flex-end", width:"100px"}}>
+        <Text>Agenda</Text>
+                <Button title="Abrir Menu"  onPress={ () => navigation.toggleDrawer() }/>
+                
+               
+      </View>
+>>>>>>> Stashed changes
     );
   }
   
