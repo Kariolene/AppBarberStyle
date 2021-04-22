@@ -8,7 +8,7 @@ export default function HomeUser({navigation}) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Home</Text>
-        <Button title="Logon" onPress={ () => navigation.navigate('SignIn') }/>
+        <Button title="Abrir Menu"  onPress={ () => navigation.toggleDrawer() }/>
       </View>
     );
   }
