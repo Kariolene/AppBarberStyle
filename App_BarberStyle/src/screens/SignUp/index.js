@@ -1,5 +1,6 @@
 import React, { useState }  from 'react';
 import { View, Text,StatusBar, Button, StyleSheet, TextInput } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import Api from '../../services/Api';
 import { 
   Container ,
@@ -15,27 +16,24 @@ import {
 export default function SignUp({navigation}) {
 
   /*Hooks que permitem digitar campos da tela*/
-  const [emailField, setEmailField]       = useState('');
-  const [nameField, setNameField]         = useState('');
-  const [passwordField, setPasswordField] = useState('');
+  const [nameField, setNameField]=useState('');
+  const [emailField, setEmailField]=useState('');
+  const [passwordField, setPasswordField]=useState('');
 
   const handlerButtonCadastrar = async () =>{
 
     if(emailField != '' && nameField != '' && passwordField != '' ){
-
+      
       /*inserir na tebela de usuários*/
       let req = await Api.signUp(emailField, nameField, passwordField);
-      if(req != ''){
+      if(req.id != ''){
+      
+        alert("Cadastro realizado"+", seu usuário é:  "+req.id);
+      
+        /*navegar para visualizar o perfil passando parametros cadastrados*/
+        navigation.navigate('PerfilUser',{ id: req.id, email: emailField, name: nameField, password: passwordField });
 
-      alert("Cadastro realizado"+", seu usuário é:"+req.id);
-
-          /*navegar para visualizar o perfil*/
-          navigation.reset({
-            routes: [{name: 'HomeUser'}]
-        });
-           
         //inserir na tabela de autenticação
-        var userID = req.id;
         let req2 = await Api.signIn(emailField, passwordField);
        
       } else {

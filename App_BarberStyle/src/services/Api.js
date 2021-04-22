@@ -6,20 +6,39 @@ export default {
    /*Cadastrar autenticação */
     signIn: async (email,password) => {
     
-    var link = '/appBarberStyle/signIn/';
-    var link2 = BASE_API+link;
+            var link = '/appBarberStyle/signIn/';
+            var link2 = BASE_API+link;
 
-     const req = await fetch(`${link2}`,{
-           method: 'POST',
-           headers: {
-               Accept:'application/json',
-               'Content-Type': 'application/json'
-           },
-           body: JSON.stringify({email,password})
-     });
-        const json = await req.json();
-        return json;
+            const req = await fetch(`${link2}`,{
+                method: 'POST',
+                headers: {
+                    Accept:'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email,password}) });
+
+                const json = await req.json();
+                return json;
+
     },
+
+    //Cadastrar usuário
+    signUp: async (email,name,password) => {
+
+        var link = '/appBarberStyle/user/';
+            var link2 = BASE_API+link;
+        
+            const req = await fetch(`${link2}`,{
+                method:'POST',
+                headers:{
+                    Accept:'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email,name,password})});
+                const json = await req.json();
+                return json;
+            
+        },
 
     getUser: async(userID)=>{
 
@@ -56,51 +75,81 @@ export default {
             return json;
     },
 
-    //Cadastrar usuário
-    signUp: async (email,name,password) => {
 
-        var link = '/appBarberStyle/user/';
+    signUpAtualize: async (userID,email,name,password) => {
+        alert(userID);
+        var link = '/appBarberStyle/user/'+userID;
         var link2 = BASE_API+link;
-    
-         const req = await fetch(`${link2}`,{
-            method:'POST',
+
+        const req = await fetch(`${link2}`,{
+            method: 'PUT',
             headers:{
                 Accept:'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({email,name,password})
-      });
+            body: JSON.stringify({email,name,password})});
+
          const json = await req.json();
          return json;
+
+    },
+
+
+    signInAtualize: async (userID,email,password) => {
+
         
-    },
+        var link = '/appBarberStyle/signIn/'+userID;
+        var link2 = BASE_API+link;
 
-    /*
-    perfilUserAtualize: async (email,name,password) => {
-        const req = await fetch(`${BASE_API}/appBarberStyle/user`,{
-            method: 'POST',
+        const req = await fetch(`${link2}`,{
+            method: 'PUT',
             headers:{
                 Accept:'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({email,name,password})
-      });
+            body: JSON.stringify({email,password})});
+
          const json = await req.json();
          return json;
+
     },
 
-    perfilUserDelete: async (email,name,password) => {
-        const req = await fetch(`${BASE_API}/appBarberStyle/user`,{
-            method: 'POST',
+
+    signInDelete: async (id) => {
+
+        var link = '/appBarberStyle/signIn/'+id;
+        var link2 = BASE_API+link;
+
+        const req = await fetch(`${link2}`,{
+            method: 'DELETE',
             headers:{
                 Accept:'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({email,name,password})
-      });
+        });
+
          const json = await req.json();
          return json;
-    }*/
+
+    },
+
+    signUpDelete: async (id) => {
+
+        var link = '/appBarberStyle/user/'+id;
+        var link2 = BASE_API+link;
+
+        const req = await fetch(`${link2}`,{
+            method: 'DELETE',
+            headers:{
+                Accept:'application/json',
+                'Content-Type': 'application/json'
+            },
+        });
+
+         const json = await req.json();
+         return json;
+    }
+
 
 
 };

@@ -1,8 +1,9 @@
 import 'react-native-gesture-handler';
-import * as React from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import MainStack from './src/stack/MainStack';
 import UserContextProvider from './src/contexts/UserContext';
+
 
 export default function App(){
   return (
@@ -13,4 +14,3 @@ export default function App(){
      </UserContextProvider>
   );
 }
-

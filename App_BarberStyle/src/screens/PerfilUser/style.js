@@ -33,7 +33,7 @@ margin: 20px;
 export const SingButtonArea = styled.TouchableOpacity`
 flex-direction: row;
 justify-content: center;
-margin-top: 10px;
+margin-top: 30px;
 
 `;
 
