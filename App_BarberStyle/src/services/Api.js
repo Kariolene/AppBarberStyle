@@ -92,7 +92,7 @@ export default {
 //Atualizar cadastro
 
     signUpAtualize: async (userID,email,name,password) => {
-        alert(userID);
+        
         var link = '/appBarberStyle/user/'+userID;
         var link2 = BASE_API+link;
 
