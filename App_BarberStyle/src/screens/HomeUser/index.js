@@ -4,12 +4,16 @@ import { Container } from './style';
 
 
 
+
 export default function HomeUser({navigation}) {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home</Text>
-        <Button title="Logon" onPress={ () => navigation.navigate('SignIn') }/>
-      </View>
+      <Container>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>Home</Text>
+            <Button title="Logon" onPress={ () => navigation.navigate('SignIn') }/>
+            <Button title="Search" onPress={() => navigation.navigate('Search')} />
+          </View>
+      </Container>
     );
   }
   
