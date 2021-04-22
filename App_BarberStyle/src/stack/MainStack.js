@@ -6,18 +6,15 @@ import HomeUser from '../screens/HomeUser';
 import PerfilUser from '../screens/PerfilUser';
 
 
-
-
-
 const Stack = createStackNavigator();
 
 
 export default function MainStack({navigation}) {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="SignIn"    component={SignIn}/>
-        <Stack.Screen name="SignUp"    component={SignUp}/>
-        <Stack.Screen name="HomeUser"  component={HomeUser}/>
+        <Stack.Screen name="SignIn"      component={SignIn}/>
+        <Stack.Screen name="SignUp"      component={SignUp}/>
+        <Stack.Screen name="HomeUser"    component={HomeUser}/>
         <Stack.Screen name="PerfilUser"  component={PerfilUser}/>
     </Stack.Navigator>
   );

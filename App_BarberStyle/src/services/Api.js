@@ -3,7 +3,10 @@ const BASE_API='https://607a5bfdbd56a60017ba29de.mockapi.io/api';
 
 export default {
 
-   /*Cadastrar autenticação */
+    
+//........................................................
+/*Cadastrar autenticação */
+
     signIn: async (email,password) => {
     
             var link = '/appBarberStyle/signIn/';
@@ -22,7 +25,10 @@ export default {
 
     },
 
-    //Cadastrar usuário
+    
+//........................................................
+//Cadastrar usuário
+
     signUp: async (email,name,password) => {
 
         var link = '/appBarberStyle/user/';
@@ -39,6 +45,10 @@ export default {
                 return json;
             
         },
+
+        
+//........................................................
+//Obter usuário
 
     getUser: async(userID)=>{
 
@@ -57,7 +67,9 @@ export default {
             return json;
     },
 
-    //Atualizar usuário
+    
+//........................................................
+//Atualizar usuário
     setUser: async(userID,email,name,password)=>{
 
         var link = '/appBarberStyle/user/'+userID;
@@ -75,6 +87,9 @@ export default {
             return json;
     },
 
+
+//........................................................
+//Atualizar cadastro
 
     signUpAtualize: async (userID,email,name,password) => {
         alert(userID);
@@ -94,6 +109,9 @@ export default {
 
     },
 
+
+//........................................................
+//Atualizar autenticação
 
     signInAtualize: async (userID,email,password) => {
 
@@ -115,6 +133,8 @@ export default {
     },
 
 
+//........................................................
+//Deletar autenticação de usuario
     signInDelete: async (id) => {
 
         var link = '/appBarberStyle/signIn/'+id;
@@ -133,6 +153,8 @@ export default {
 
     },
 
+//........................................................
+//Deletar cadastro de usuario
     signUpDelete: async (id) => {
 
         var link = '/appBarberStyle/user/'+id;
@@ -150,6 +172,7 @@ export default {
          return json;
     }
 
+//........................................................
 
 
 };

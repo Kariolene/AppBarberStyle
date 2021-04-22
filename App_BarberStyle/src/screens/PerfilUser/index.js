@@ -14,8 +14,6 @@ import {
 
 export default function PerfilUser({route,navigation}) {
 
-//...........................................................................
-  //const  = useNavigation();
 
 //...........................................................................
 /*Definição de valores transferidos entre screens*/
@@ -160,8 +158,6 @@ export default function PerfilUser({route,navigation}) {
 
   const style = StyleSheet.create({
 
-    /*Style para o bady*/
-
     /*Style para o titulo da screen*/
     title:{
       marginTop:60,
@@ -177,7 +173,6 @@ export default function PerfilUser({route,navigation}) {
       fontFamily: 'Serif',
       fontSize: 30,
       fontWeight: 'bold',
-      //marginTop:30,
     },
 
     subContainer:{
@@ -197,17 +192,9 @@ export default function PerfilUser({route,navigation}) {
       padding: 15,
       margin: 5,
       color:'#FFC82C',
-      fontWeight: 'bold',
     },
 
     buttonSalvar:{
-     /* backgroundColor:'#FFC82C',
-      height: 40,
-      width: 150,
-      borderRadius: 30,
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: 10,*/
       flexDirection: 'row',
       justifyContent:'center',
       marginTop: 50,
@@ -216,7 +203,6 @@ export default function PerfilUser({route,navigation}) {
       color: '#A6A583',
       fontFamily: 'sans-serif',
       fontSize: 16,
-     // fontWeight: 'bold',
       marginLeft: 5,
     }
 

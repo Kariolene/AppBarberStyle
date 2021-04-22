@@ -15,7 +15,9 @@ import {
 
 export default function SignUp({navigation}) {
 
+  //.............................................................................
   /*Hooks que permitem digitar campos da tela*/
+
   const [nameField, setNameField]=useState('');
   const [emailField, setEmailField]=useState('');
   const [passwordField, setPasswordField]=useState('');
@@ -45,6 +47,10 @@ export default function SignUp({navigation}) {
      }
 
   };
+
+//.............................................................................
+
+
 
     return (
 
@@ -95,8 +101,6 @@ export default function SignUp({navigation}) {
 
   const style = StyleSheet.create({
 
-    /*Style para o bady*/
-
     /*Style para o titulo da screen*/
     title:{
       marginTop:60,
@@ -112,7 +116,6 @@ export default function SignUp({navigation}) {
       fontFamily: 'Serif',
       fontSize: 30,
       fontWeight: 'bold',
-      //marginTop:30,
     },
 
     subContainer:{
@@ -136,13 +139,6 @@ export default function SignUp({navigation}) {
     },
 
     buttonSalvar:{
-     /* backgroundColor:'#FFC82C',
-      height: 40,
-      width: 150,
-      borderRadius: 30,
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: 10,*/
       flexDirection: 'row',
       justifyContent:'center',
       marginTop: 50,
@@ -151,7 +147,6 @@ export default function SignUp({navigation}) {
       color: '#A6A583',
       fontFamily: 'sans-serif',
       fontSize: 16,
-     // fontWeight: 'bold',
       marginLeft: 5,
     }
 
