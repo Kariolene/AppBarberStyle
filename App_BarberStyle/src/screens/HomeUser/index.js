@@ -10,10 +10,10 @@ import {
     <Container >
          <Text style={style.title}>BarberStyle</Text>
          <Text style={style.subTitle}>Meu Perfil</Text>
-      <row>
-      <Button title="Logout" onPress={ () => navigation.navigate('SignIn') }/>
-      <Button title="Toggle drawer" onPress={() => navigation.toggleDrawer()} />
-      </row>
+          <row>
+          <Button title="Logout" onPress={ () => navigation.navigate('SignIn') }/>
+          <Button title="Toggle drawer" onPress={() => navigation.toggleDrawer()} />
+          </row>
     </Container>
   );
 }
