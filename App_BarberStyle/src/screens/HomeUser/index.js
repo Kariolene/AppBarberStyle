@@ -12,7 +12,8 @@ import {
          <Text style={style.subTitle}>Meu Perfil</Text>
           <row>
           <Button title="Logout" onPress={ () => navigation.navigate('SignIn') }/>
-          <Button title="Toggle drawer" onPress={() => navigation.toggleDrawer()} />
+          <Button title="Search" onPress={() => navigation.navigate('SearchBarber')} />
+          <Button title="Menu" onPress={() => navigation.toggleDrawer()} />
           </row>
     </Container>
   );
@@ -39,3 +40,5 @@ const style = StyleSheet.create({
   },
 
 });
+
+  
