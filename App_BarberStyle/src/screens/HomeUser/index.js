@@ -3,25 +3,14 @@ import { View, Text, Button, TextInput} from 'react-native';
 import { 
   Container, 
  } from './style';
-//import SearchIcon from '../../assets/search.svg'
-//import Barbeiro from '../../components/Barbeiro'
 
 
-export default function HomeUser({navigation}) {
-    return (
-
-      <Container>
-        <Text>
-          HomeUser
-        </Text>
-          {/*<HeaderArea>
-              <SearchButton>    
-                       
-            </SearchButton>            
-          </HeaderArea>
-          <ListArea>
-            
-          </ListArea>*/}
-      </Container>
-    );
-  }         
+ export default function HomeUser({navigation}) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home</Text>
+      <Button title="Logout" onPress={ () => navigation.navigate('SignIn') }/>
+      <Button title="Toggle drawer" onPress={() => navigation.toggleDrawer()} />
+    </View>
+  );
+}

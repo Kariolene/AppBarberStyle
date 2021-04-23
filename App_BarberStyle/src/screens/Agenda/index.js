@@ -1,16 +1,3 @@
-<<<<<<< Updated upstream
-import React from 'react'
-import {Text} from 'react-native'
-import {Container} from './styles'
-
-export default ()=> {
-    return (
-        <Container>
-            <Text>Agenda</Text>
-        </Container>
-    )
-}
-=======
 import * as React from 'react';
 import { ImageBackground } from 'react-native';
 import { View, Text, Button} from 'react-native';
@@ -29,4 +16,3 @@ export default function Agenda({navigation}) {
     );
   }
   
->>>>>>> Stashed changes

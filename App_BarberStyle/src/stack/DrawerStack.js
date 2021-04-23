@@ -19,9 +19,9 @@ const Drawer = createDrawerNavigator()
 export default function DrawerStack({navigation}){
     return(
         <Drawer.Navigator initialRouteName = 'HomeUser' draweContent = {props => <CustomDrawerContent {...props}/>}> 
-            <Drawer.Screen name = "Home" component= {HomeUser}></Drawer.Screen>             
-            <Drawer.Screen name = "Favoritos" component= {Favoritos}></Drawer.Screen>
-            <Drawer.Screen name = "Agenda" component= {Agenda}></Drawer.Screen>                   
+            <Drawer.Screen name = "Home"       component= {HomeUser}/>             
+            <Drawer.Screen name = "Favoritos"  component= {Favoritos}/>
+            <Drawer.Screen name = "Agenda"     component= {Agenda}/>                   
         </Drawer.Navigator>
     )
 }

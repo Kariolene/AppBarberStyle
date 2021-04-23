@@ -7,7 +7,7 @@ import PerfilUser from '../screens/PerfilUser';
 import DrawerStack from './DrawerStack';
 import Agenda from '../screens/Agenda';
 import Favoritos from '../screens/Favoritos';
-import DrawerStack from '../stack/DrawerStack'
+//import DrawerStack from '../stack/DrawerStack';
 import SearchBarber from '../screens/SearchBarber';
 import MainTab from './MainTab';
 
