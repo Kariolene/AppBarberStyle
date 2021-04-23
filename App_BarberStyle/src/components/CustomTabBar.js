@@ -11,7 +11,7 @@ const TabArea = styled.View`
 const TabItem = styled.TouchableOpacity`
     flex: 1;
     justify-content: center;
-    aling-items: center;
+    //::placeholderaling-items: center;
 `;
 
 export default ({state, navigation}) => {

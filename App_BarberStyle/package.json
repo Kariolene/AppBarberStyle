@@ -12,14 +12,9 @@
     "@material-ui/core": "^4.11.3",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/geolocation": "^2.0.2",
-<<<<<<< HEAD
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.9",
     "@react-navigation/drawer": "^5.12.5",
-=======
-    "@react-native-community/masked-view": "^0.1.10",
-    "@react-navigation/bottom-tabs": "^5.11.10",
->>>>>>> 4c165a76e06f0d8ebdcbaf777b68028a6f2867ca
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
     "expo": "~40.0.0",
