@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, TextInput} from 'react-native';
+import { View, Text, Button, row, StyleSheet} from 'react-native';
 import { 
   Container, 
  } from './style';
@@ -7,10 +7,35 @@ import {
 
  export default function HomeUser({navigation}) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home</Text>
+    <Container >
+         <Text style={style.title}>BarberStyle</Text>
+         <Text style={style.subTitle}>Meu Perfil</Text>
+      <row>
       <Button title="Logout" onPress={ () => navigation.navigate('SignIn') }/>
       <Button title="Toggle drawer" onPress={() => navigation.toggleDrawer()} />
-    </View>
+      </row>
+    </Container>
   );
 }
+
+
+const style = StyleSheet.create({
+
+  /*Style para o titulo da screen*/
+  title:{
+    marginTop:60,
+    color: '#FFC82C',
+    fontFamily: 'Serif',
+    fontSize: 45,
+    padding: 20,
+  },
+
+  /*Style para o subtitulo da screen*/
+  subTitle:{
+    color: '#FFC82C',
+    fontFamily: 'Serif',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+
+});
