@@ -1,15 +1,44 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import { Container } from './style';
+import { View, Text, Button, row, StyleSheet} from 'react-native';
+import { 
+  Container, 
+ } from './style';
 
 
+ export default function HomeUser({navigation}) {
+  return (
+    <Container >
+         <Text style={style.title}>BarberStyle</Text>
+         <Text style={style.subTitle}>Meu Perfil</Text>
+          <row>
+          <Button title="Logout" onPress={ () => navigation.navigate('SignIn') }/>
+          <Button title="Search" onPress={() => navigation.navigate('SearchBarber')} />
+          <Button title="Menu" onPress={() => navigation.toggleDrawer()} />
+          </row>
+    </Container>
+  );
+}
 
-export default function HomeUser({navigation}) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home</Text>
-        <Button title="Logon" onPress={ () => navigation.navigate('SignIn') }/>
-      </View>
-    );
-  }
+
+const style = StyleSheet.create({
+
+  /*Style para o titulo da screen*/
+  title:{
+    marginTop:60,
+    color: '#FFC82C',
+    fontFamily: 'Serif',
+    fontSize: 45,
+    padding: 20,
+  },
+
+  /*Style para o subtitulo da screen*/
+  subTitle:{
+    color: '#FFC82C',
+    fontFamily: 'Serif',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+
+});
+
   

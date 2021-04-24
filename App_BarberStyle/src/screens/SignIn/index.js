@@ -16,19 +16,17 @@ import {
  } from './style';
 
 
-
-
 export default function SignIn({navigation}){
 
+//...........................................................................
 /*Hooks que permitem digitar e-mail/senha na tela ou alterar o que foi digitado*/
-  //const [emailField, setEmailField] = useState('karyolene@gmail.com');
   const [id, setId] = useState('');
   const [passwordField, setPasswordField] = useState('');
-  
+
+//...........................................................................
 /*Ação do botão de login do usuário*/
   const handlerButtonLoginClick = async () =>{
     
-    //if(emailField != '' && passwordField != ''){
       if(id != '' && passwordField != ''){   
 
       let json = await Api.getUser(id);
@@ -37,8 +35,7 @@ export default function SignIn({navigation}){
           
             if(json.password == passwordField ) {
               
-                navigation.reset({
-                routes: [{name: 'HomeUser'}]});
+                navigation.reset({routes: [{name: 'HomeUser'}]});
                 
             }else{
               alert("Senha inválida.");
@@ -53,12 +50,16 @@ export default function SignIn({navigation}){
      }
   }
 
+//...........................................................................
 /*Ação do botão de cadastro de usuário*/
   const handlerLinkClick = ()=>{
    navigation.reset({
      routes: [{name: 'SignUp'}]
     });
   }
+
+//...........................................................................
+
 
     return (
 
@@ -71,9 +72,7 @@ export default function SignIn({navigation}){
           {/* Input do e-mail personalizado*/}
           <SignInput
              placeholder = "Usuário"
-             //value={emailField}
              value={id}
-             //onChangeText={t=>setEmailField(t)}
              onChangeText={t=>setId(t)}
           />
 

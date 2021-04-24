@@ -1,5 +1,7 @@
 import React, { useState }  from 'react';
-import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
+import Dialog, { DialogFooter, DialogButton, DialogContent, DialogActions }  from 'react-native-popup-dialog';
+import {useNavigation} from "@react-navigation/native";
 import Api from '../../services/Api';
 import { 
   Container ,
@@ -10,41 +12,79 @@ import {
 } from './style';
 
 
+export default function PerfilUser({route,navigation}) {
 
 
-export default function PerfilUser({navigation}) {
+//...........................................................................
+/*Definição de valores transferidos entre screens*/
 
-  /*Hooks que permitem digitar campos da tela*/
-  const [emailField, setEmailField]       = useState('');
-  const [nameField, setNameField]         = useState('');
-  const [passwordField, setPasswordField] = useState('');
+  const { id,email, name, password } = route.params;
 
-  const handlerButtonCadastrar = async () =>{
-  
+//...........................................................................
+/*Hooks que permitem digitar campos da tela*/
+
+  const [nameField,     setNameField]     = useState(name);//Exibir com valores cadastrados
+  const [emailField,    setEmailField]    = useState(email);
+  const [passwordField, setPasswordField] = useState(password);
+
+
+//...........................................................................
+// Ação do botão atualizar perfil
+
+  const handlerButtonAtualizar = async () =>{
+
     if(emailField != '' && nameField != '' && passwordField != '' ){
 
-      /*Salvando o cadastro na api*/
-      let req = await Api.signUp(emailField, nameField, passwordField);
-      if(req != ''){
+      /*atualizar na tebela de usuários*/
+      let req = await Api.signUpAtualize(id,emailField, nameField, passwordField);
 
-      alert("Cadastro realizado com sucesso!!");
+      if(req.id == id){
 
-          /*navegar para visualizar o perfil*/
-          navigation.reset({
-            routes: [{name: 'PersilUser'}]
-        });
-       
+         alert("Atualizado com sucesso!");
+
+        //Atualizar na tabela de autenticação
+        let req2 = await Api.signInAtualize(id,emailField, passwordField);
+      
       } else {
         alert("Verifique os dados no seu cadastro");
        }
 
-     } else {
-      alert("Favor preencher todos os campos para concluir o cadastro.");
-     }
+    } else {
+    alert("Favor preencher todos os campos para concluir a atualização.");
+    }
 
   };
 
+//...........................................................................
+// Ação do botão deletar perfil -> exibição do pop up 
+  const [popupExibir, setPopupExibir] = useState(false); 
   
+  const showDialog = () => setPopupExibir(true);
+  const hideDialog = () => setPopupExibir(false);
+
+  const dialogOk  = async () => {
+    
+    setPopupExibir(false);
+  
+    /*atualizar na tebela de usuários*/
+    let req = await Api.signUpDelete(id);
+
+    if(req.id == id){
+
+      alert("Conta deletada.");
+
+      //Atualizar na tabela de autenticação
+      let req2 = await Api.signInDelete(id);
+        
+      //Voltar para tela de login
+      navigation.reset({ routes: [{name: 'SignIn'}]});
+
+    } else {
+      alert("Algo deu errado");
+    }
+  }
+
+//...........................................................................
 
     return (
 
@@ -53,13 +93,14 @@ export default function PerfilUser({navigation}) {
          <Text style={style.title}>BarberStyle</Text>
          <Text style={style.subTitle}>Meu Perfil</Text>
         
-         {/*Container com inputs de cadastro*/}
+         {/*Container com inputs do perfil*/}
         <View style={style.subContainer}>
-          
+        
           <TextInput
           placeholder={'Nome '}
           style={style.containerInput}
           keyboardType={'default'}
+          value={nameField}
           onChangeText={t=>setNameField(t)}
           /> 
 
@@ -67,6 +108,7 @@ export default function PerfilUser({navigation}) {
           placeholder={'name@example.com'}
           style={style.containerInput}
           keyboardType={'email-address'}
+          value={emailField}
           onChangeText={t=>setEmailField(t)}
           />
 
@@ -74,27 +116,47 @@ export default function PerfilUser({navigation}) {
           placeholder={'Senha'}
           style={style.containerInput}
           secureTextEntry={true}
+          value={passwordField}
           onChangeText={t=>setPasswordField(t)}
           />
 
         </View>
 
-        <CustomButton onPress={handlerButtonCadastrar}>
-          <CustomButtonText>Cadastrar</CustomButtonText>
+        <CustomButton onPress={handlerButtonAtualizar}>
+          <CustomButtonText>Atualizar</CustomButtonText>
         </CustomButton>
 
         <SingButtonArea onPress={ () => navigation.navigate('SignIn') }>
         <SingButtonTextBold>Fazer Login</SingButtonTextBold>
         </SingButtonArea>
         
+        <SingButtonArea onPress={showDialog}>
+        <SingButtonTextBold>Deletar conta</SingButtonTextBold>
+        <Dialog
+          title="Deletar conta"
+          visible={popupExibir}
+          footer={
+            <DialogFooter>
+              <DialogButton
+                text="CANCEL"
+                onPress={hideDialog}
+              />
+              <DialogButton
+                text="OK"
+                onPress={dialogOk}
+              />
+            </DialogFooter>
+          }>
+          <DialogContent> Confirmar exclusão de conta?</DialogContent>
+        </Dialog>
+       </SingButtonArea>
+
+
         </Container>
-    );
-  }
+    );}
   
 
   const style = StyleSheet.create({
-
-    /*Style para o bady*/
 
     /*Style para o titulo da screen*/
     title:{
@@ -111,7 +173,6 @@ export default function PerfilUser({navigation}) {
       fontFamily: 'Serif',
       fontSize: 30,
       fontWeight: 'bold',
-      //marginTop:30,
     },
 
     subContainer:{
@@ -131,17 +192,9 @@ export default function PerfilUser({navigation}) {
       padding: 15,
       margin: 5,
       color:'#FFC82C',
-      fontWeight: 'bold',
     },
 
     buttonSalvar:{
-     /* backgroundColor:'#FFC82C',
-      height: 40,
-      width: 150,
-      borderRadius: 30,
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: 10,*/
       flexDirection: 'row',
       justifyContent:'center',
       marginTop: 50,
@@ -150,7 +203,6 @@ export default function PerfilUser({navigation}) {
       color: '#A6A583',
       fontFamily: 'sans-serif',
       fontSize: 16,
-     // fontWeight: 'bold',
       marginLeft: 5,
     }
 
