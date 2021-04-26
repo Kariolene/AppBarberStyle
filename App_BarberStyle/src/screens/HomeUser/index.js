@@ -12,7 +12,6 @@ import {
          <Text style={style.subTitle}>Meu Perfil</Text>
           <row>
           <Button title="Logout" onPress={ () => navigation.navigate('SignIn') }/>
-          <Button title="Search" onPress={() => navigation.navigate('SearchBarber')} />
           <Button title="Menu" onPress={() => navigation.toggleDrawer()} />
           </row>
     </Container>

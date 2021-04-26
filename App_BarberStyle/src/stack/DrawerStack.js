@@ -3,7 +3,8 @@ import React from 'react';
 import HomeUser  from '../screens/HomeUser';
 import Favoritos from '../screens/Favoritos';
 import Agenda    from '../screens/Agenda';
-import SearchBarber from '../screens/SearchBarber';
+import Buscar from '../screens/Buscar';
+
 
 function CustomDrawerContent(props) {
     return(
@@ -23,7 +24,7 @@ export default function DrawerStack({navigation}){
             <Drawer.Screen name = "Home"         component= {HomeUser}/>             
             <Drawer.Screen name = "Favoritos"    component= {Favoritos}/>
             <Drawer.Screen name = "Agenda"       component= {Agenda}/>       
-            <Drawer.Screen name = "SearchBarber" component= {SearchBarber}/>             
+            <Drawer.Screen name = "Buscar"       component= {Buscar}/>
         </Drawer.Navigator>
     )
 }

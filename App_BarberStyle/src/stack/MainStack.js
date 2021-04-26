@@ -8,7 +8,7 @@ import DrawerStack from './DrawerStack';
 import Agenda from '../screens/Agenda';
 import Favoritos from '../screens/Favoritos';
 import MainTab from './MainTab';
-import SearchBarber from '../screens/SearchBarber';
+import Buscar from '../screens/Buscar';
 
 
 
@@ -26,7 +26,7 @@ export default function MainStack({navigation}) {
         <Stack.Screen name="PerfilUser"   component={PerfilUser}/>
         <Stack.Screen name="MainTab"      component={MainTab}/>
         <Stack.Screen name="Agenda"       component={Agenda}/>
-        <Stack.Screen name="SearchBarber" component={SearchBarber}/>
+        <Stack.Screen name="Buscar"       component={Buscar} />
         <Stack.Screen name="Favoritos"    component={Favoritos}/>
 
     </Stack.Navigator>
