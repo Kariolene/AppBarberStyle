@@ -12,7 +12,7 @@ import SignUpBarbearia from '../screens/SignUpBarbearia';
 import SignInBarbearia from '../screens/SignInBarbearia';
 import HomeBarbearia from '../screens/HomeBarbearia';
 import PerfilBarbearia from '../screens/PerfilBarbearia';
-
+import Cartao from '../screens/Cartao'
 
 
 
@@ -35,6 +35,7 @@ export default function MainStack({navigation}) {
         <Stack.Screen name="SignUpBarbearia" component={SignUpBarbearia} />
         <Stack.Screen name="HomeBarbearia"   component={HomeBarbearia}/>
         <Stack.Screen name="PerfilBarbearia" component={PerfilBarbearia}/>
+        <Stack.Screen name="Cartao" component={Cartao}/>
 
     </Stack.Navigator>
   );

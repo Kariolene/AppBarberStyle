@@ -5,6 +5,7 @@ import Favoritos from '../screens/Favoritos';
 import Agenda    from '../screens/Agenda';
 import SearchBarber from '../screens/SearchBarber';
 import SignIn from '../screens/SignIn';
+import Cartao from '../screens/Cartao'
 
 function CustomDrawerContent(props) {
     return(
@@ -25,7 +26,8 @@ export default function DrawerStack({navigation}){
             <Drawer.Screen name = "Favoritos"       component= {Favoritos}/>
             <Drawer.Screen name = "Agenda"          component= {Agenda}/>       
             <Drawer.Screen name = "SearchBarber"    component= {SearchBarber}/>  
-            <Drawer.Screen name = "Logout"          component= {SignIn}/>     
+            <Drawer.Screen name = "Logout"          component= {SignIn}/>   
+            <Drawer.Screen name = "Cartão"          component= {Cartao}/>      
         </Drawer.Navigator>
     )
 }
