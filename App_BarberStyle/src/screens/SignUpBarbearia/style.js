@@ -9,7 +9,6 @@ background-color: #0F0F0E;
 opacity: 80%;
 flex: 1;
 align-items: center;
-justify-content: center;
 `;
 
 //........................................................
@@ -37,7 +36,7 @@ margin: 20px;
 export const SingButtonArea = styled.TouchableOpacity`
 flex-direction: row;
 justify-content: center;
-margin-bottom: 30px;
+margin-top: 10px;
 
 `;
 

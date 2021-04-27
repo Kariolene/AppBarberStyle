@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import FooterBar from '../components/FooterBar';
 import HomeUser from '../screens/HomeUser';
-
 import Favoritos from '../screens/Favoritos';
 import Profile from '../screens/PerfilUser';
 import Agenda from '../screens/Agenda';

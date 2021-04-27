@@ -2,14 +2,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-
 //........................................................
 export const Container = styled.SafeAreaView`
 background-color: #0F0F0E;
 opacity: 80%;
 flex: 1;
 align-items: center;
-justify-content: center;
 `;
 
 //........................................................
@@ -18,7 +16,6 @@ export const CustomButtonText = styled.Text`
 font-size: 18px;
 color:'#FFC82C';
 font-weight: bold;
-
 `;
 
 //........................................................
@@ -37,7 +34,7 @@ margin: 20px;
 export const SingButtonArea = styled.TouchableOpacity`
 flex-direction: row;
 justify-content: center;
-margin-bottom: 30px;
+margin-top: 30px;
 
 `;
 

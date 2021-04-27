@@ -17,7 +17,7 @@ import {
 
 
 
-export default function SignIn({ route, navigation}){
+export default function SignInBarbearia({navigation}){
 
  
 //...........................................................................
@@ -56,17 +56,17 @@ export default function SignIn({ route, navigation}){
 
 //...........................................................................
 /*Cadastrar usuário*/
-  const handlerLinkClick = ()=>{
+  const handlerLinkSignUpBarber = ()=>{
    navigation.reset({
-     routes: [{name: 'SignUp'}]
+     routes: [{name: 'SignUpBarbearia'}]
     });
   }
 
 //...........................................................................
 /*Trocar de conta*/
-const handlerLinkBabearias = ()=>{
+const handlerLinkUser = ()=>{
   navigation.reset({
-    routes: [{name: 'SignInBarbearia'}]
+    routes: [{name: 'SignIn'}]
    });
  }
 
@@ -80,7 +80,7 @@ const handlerLinkBabearias = ()=>{
        
           <InputArea>
           <SignInput
-             placeholder = "Usuário"
+             placeholder = "Usuário da Barbearia"
              value={id}
              onChangeText={t=>setId(t)}>
           </SignInput>
@@ -100,14 +100,14 @@ const handlerLinkBabearias = ()=>{
           </CustomButton>
 
           {/* Botão do tipo link*/}
-          <SingButtonArea onPress={handlerLinkClick}>
-            <SingButtonTextBold>Cadastre-se</SingButtonTextBold>
+          <SingButtonArea onPress={handlerLinkSignUpBarber}>
+            <SingButtonTextBold>Cadastrar Barbearia</SingButtonTextBold>
           </SingButtonArea>
 
           
           {/* Botão do tipo link*/}
-          <SingButtonArea onPress={handlerLinkBabearias}>
-          <SingButtonTextBold>Barbearias</SingButtonTextBold>
+          <SingButtonArea onPress={handlerLinkUser}>
+          <SingButtonTextBold>Trocar tipo de conta</SingButtonTextBold>
         </SingButtonArea>
       
       </Container>
