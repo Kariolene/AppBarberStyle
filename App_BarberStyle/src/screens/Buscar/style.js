@@ -11,7 +11,22 @@ flex: 1;
 align-items: center;
 `;
 
-export const Scroll = styled.ScrollView`
+export const Scroller = styled.ScrollView`
     flex: 1;
     padding: 20px;
+`;
+
+export const HeaderArea = styled.SafeAreaView`
+    
+`;
+
+export const SearchButton = styled.TouchableOpacity`
+    flex: 1;
+    padding: 10px;
+    height: 20px;
+    flex-direction: row;
+`;
+
+export const SearchTitle = styled.TextInput`
+    
 `;

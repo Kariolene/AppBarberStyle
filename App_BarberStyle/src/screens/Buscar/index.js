@@ -2,20 +2,23 @@ import * as React from 'react';
 import { ImageBackground } from 'react-native';
 import styled from 'styled-components/native';
 import { View, Text, Button, StyleSheet} from 'react-native';
-import { Container, Scroll } from './style';
+import { Container, Scroller, HeaderArea } from './style';
 
 
 
 export default function Favoritos({navigation}) {
     return (
       <Container>
-          
-            <Text style={style.title}>BarberStyle</Text>
-          <Text style={style.subTitle}>Buscar</Text>
-            <Button style={style.Buton} title="Abrir Menu"  onPress={ () => navigation.toggleDrawer() }/>
-            <Scroll >
+          <HeaderArea >
+              <Text style={style.title}>BarberStyle</Text>
+            <Text style={style.subTitle}>Buscar</Text>
+              <Button style={style.Buton} title="Abrir Menu"  onPress={ () => navigation.toggleDrawer() }/>
+            <Scroller >
               <Text style={style.Scroll}>Digite o nome do seu babeiro </Text>
-            </Scroll>
+            </Scroller>
+          </HeaderArea >
+
+          <SearchButton></SearchButton>
       </Container>
     );
   }
