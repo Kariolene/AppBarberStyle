@@ -1,5 +1,5 @@
 const BASE_API='https://607a5bfdbd56a60017ba29de.mockapi.io/api';
-const DATABASE_API = 'https://60807fcea5be5d00176ddc15.mockapi.io/Api/appBarberStyle/barber/barber'
+const CARTAO_API = 'https://60807fcea5be5d00176ddc15.mockapi.io/Api/appBarberStyle/cartao/cartao'
 
 export default {
 
@@ -151,49 +151,31 @@ signUpDelete: async (id) => {
 
     },*/
 
+//Obter cartao
 
-//........................................................
-// BARBEARIA
-//........................................................
+    getCartao: async(id)=>{
 
-//Obter barbearia
-
-    getBarber: async(id)=>{
-
-        var link = '/appBarberStyle/barbearia/'+id;
-        var link2 = BASE_API+link;
+        var link = '/Api/appBarberStyle/cartao/'+id;
+        var link2 = CARTAO_API+link;
 
         const req = await fetch(`${link2}`,{
             method: 'GET',
             headers: {
                 Accept:'application/json',
                 'Content-Type': 'application/json'
-            },
-           // body: JSON.stringify({email,name,password})
+            },           
         });
             const json = await req.json();
             return json;
     },
-
-
-//........................................................
-//Cadastrar barbearia
+//Cadastrar cartao
 
     signUpBarber: async (
-        nameBarber,
-        nameResp,
-        contatoBarber, 
-        localidade,
-        cidade,
-        estado,
-        pais,
-        cep,
-        email,
-        password
+        numeroCartao
         ) => {
 
-        var link = '/appBarberStyle/barbearia/';
-            var link2 = BASE_API+link;
+        var link = '/Api/appBarberStyle/cartao/';
+            var link2 = CARTAO_API+link;
         
             const req = await fetch(`${link2}`,{
                 method:'POST',
@@ -202,39 +184,19 @@ signUpDelete: async (id) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    nameBarber,
-                    nameResp,
-                    contatoBarber, 
-                    localidade,
-                    cidade,
-                    estado,
-                    pais,
-                    cep,
-                    email,
-                    password})});
+                    numeroCartao})});
                 const json = await req.json();
                 return json;
             
         },
+//Atualizar cartao
 
-//........................................................
-//Atualizar barbearia
-
-    signUpBarberAtualizar: async (
-        nameBarber,
-        nameResp,
-        contatoBarber, 
-        localidade,
-        cidade,
-        estado,
-        pais,
-        cep,
-        email,
-        password
+    attCatao: async (
+        numeroCartao
         ) => {
 
-        var link = '/appBarberStyle/barbearia/';
-            var link2 = BASE_API+link;
+        var link = '/Api/appBarberStyle/cartao/';
+            var link2 = CARTAO_API+link;
         
             const req = await fetch(`${link2}`,{
                 method:'PUT',
@@ -243,26 +205,16 @@ signUpDelete: async (id) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    nameBarber,
-                    nameResp,
-                    contatoBarber, 
-                    localidade,
-                    cidade,
-                    estado,
-                    pais,
-                    cep,
-                    email,
-                    password})});
+                    numeroCartao})});
                 const json = await req.json();
                 return json;
             
         },
-//........................................................
-//Deletar  barbearia
-    deleteBarber: async(id)=>{
+//Deletar  cartao
+    deleteCartao: async(id)=>{
 
-        var link = '/appBarberStyle/barbearia/'+id;
-        var link2 = BASE_API+link;
+        var link = '/Api/appBarberStyle/cartao/'+id;
+        var link2 = CARTAO_API+link;
 
         const req = await fetch(`${link2}`,{
             method: 'DELETE',
@@ -270,16 +222,10 @@ signUpDelete: async (id) => {
                 Accept:'application/json',
                 'Content-Type': 'application/json'
             },
-        // body: JSON.stringify({email,name,password})
+        
         });
             const json = await req.json();
             return json;
     },
-
-//........................................................
-// Serviços da barbearia
-//........................................................
-
-
-
+    
 };

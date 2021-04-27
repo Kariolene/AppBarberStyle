@@ -1,21 +1,24 @@
 import * as React from 'react';
-import { ImageBackground, Input, TextInput } from 'react-native';
-import { View, Text, Button, StyleSheet} from 'react-native';
+import { View, Text, Button, StyleSheet, ImageBackground, Input, TextInput} from 'react-native';
 import { Container } from './style';
-import SignInput from  '../../components/SingInput';
-
+import Api from '../../services/Api';
+import { useState }  from 'react';
 
 export default function Cartao({navigation}) {
+  const [id, setId] = useState('');
+  const [numeroCartao, SetnumeroCartao] = useState('')
+
     return (
       <Container>
         <Text style={style.title}>BarberStyle</Text>
         <Text style={style.subTitle}>Cartão</Text>
-        {/*<SignInput
-             placeholder = "Cartão"
-             value={id}
-             onChangeText={t=>setId(t)}>
-        </SignInput>*/}
-        <Input></Input>
+        <TextInput style={style.cartaoInput} placeholder="Numero do cartao" keyboardType="numeric"></TextInput>
+        <Button style={style.subTitle} title="Cadastrar"></Button>
+
+        <TextInput style={style.cartaoInput} placeholder="Numero do cartao" keyboardType="numeric"></TextInput>
+        <Button style={style.subTitle} title="Deletar"></Button>
+
+        <TextInput></TextInput>
           <Button title="Abrir Menu"  onPress={ () => navigation.toggleDrawer() }/>      
       </Container>
     );
@@ -38,6 +41,10 @@ export default function Cartao({navigation}) {
       fontFamily: 'Serif',
       fontSize: 30,
       fontWeight: 'bold',
+    },
+    cartaoInput:{
+      color: '#FFC82C',
+      fontSize: 20,
     }
   
   });
