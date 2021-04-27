@@ -1,62 +1,66 @@
 import * as React from 'react';
-import { ImageBackground } from 'react-native';
-import styled from 'styled-components/native';
-import { View, Text, Button, StyleSheet} from 'react-native';
-import { Container, Scroller, HeaderArea } from './style';
+import { Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
+import { 
+  Container,
+  Title, 
+  Scroller, 
+  SubTitle,
+  SearchArea,
+  SearchInput,
+  SearchFinder,
+  LoadingIcon,
+} from './style';
+
+import { Fontisto } from '@expo/vector-icons';
 
 
+export default function Buscar({navigation}) {
+//Buscar Barbeiros
+    /*const navigation = useNavigation();
+    const [loading, setLoading] = useState(false);
+    const [list, setList] = useState([]);
+    
+    const handleSearchBarber = () =>{
+      setLoading(true);
+      setList([]);
 
-export default function Favoritos({navigation}) {
+      getBarbers();
+    }
+
+    const getBarbers = ()=>{
+
+    }
+    */
     return (
       <Container>
-          <HeaderArea >
-              <Text style={style.title}>BarberStyle</Text>
-            <Text style={style.subTitle}>Buscar</Text>
-              <Button style={style.Buton} title="Abrir Menu"  onPress={ () => navigation.toggleDrawer() }/>
-            <Scroller >
-              <Text style={style.Scroll}>Digite o nome do seu babeiro </Text>
-            </Scroller>
-          </HeaderArea >
+            
+          <Title>BarberStyle</Title>
+          <SubTitle>Buscar</SubTitle>
+          <Button title="Abrir Menu"  onPress={ () => navigation.toggleDrawer() }/>
+        <Scroller >
+          <SearchArea>
+            <SearchInput 
+              placeholder="Buscar por seu barbeiro"
+              placeholderTextColor="#FFFFFF" />
+            <SearchFinder /*onPress={handleSearchBarber}*/>
+              <Fontisto name="search" size={24} color="white" />
+            </SearchFinder>
+          </SearchArea>    
 
-          <SearchButton></SearchButton>
+          
+            <LoadingIcon size="small" color="#FFF"/>
+
+
+
+        </Scroller>
       </Container>
     );
   }
   
 
-
-  const style = StyleSheet.create({
-
-    /*Style para o titulo da screen*/
-    title:{
-      alignItems: 'center',
-      marginTop:20,
-      color: '#FFC82C',
-      fontFamily: 'Serif',
-      fontSize: 45,
-      padding: 20,
-
-    },
+/*
+Falta pegar a informação e levar para outro campo
+*/
   
-    /*Style para o subtitulo da screen*/
-    subTitle:{
-      alignItems: 'center',
-      color: '#FFC82C',
-      fontFamily: 'Serif',
-      fontSize: 30,
-      fontWeight: 'bold',
-    },
-
-    Buton:{
-      paddingleft: 100,
-      fill: '#AAA'
-    },
-
-    Scroll:{
-      width:100,
-      flex:1,
-      padding: 500,
-      color: '#FFF',
-      backgroundColor: '#AAAAAA'
-    },
-  });

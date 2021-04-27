@@ -6,20 +6,17 @@ import {
  import FooterBar from '../../components/FooterBar';
 
 
- export default function HomeUser({navigation}) {
+ export default function HomeBarbearia({navigation}) {
   return (
     <Container >
          <Text style={style.title}>BarberStyle</Text>
-         <Text style={style.subTitle}>Home</Text>
+         <Text style={style.subTitle}>Meu Perfil</Text>
           <row>
-            <Button title="Logout" onPress={ () => navigation.navigate('SignIn') }/>
             <Button title="Menu" onPress={() => navigation.toggleDrawer()} />
           </row>
     </Container>
   );
 }
-
-
 
 
 const style = StyleSheet.create({

@@ -12,14 +12,12 @@ import {
 
 
 
-export default function SignUp({navigation}) {
+export default function SignUpBarbeiro({navigation}) {
 
   //.............................................................................
   /*Hooks que permitem digitar campos da tela*/
 
   const [nameField, setNameField]         =useState('');
-  const [dataNasc, setdataNasc]           =useState('');
-
   const [emailField, setEmailField]       =useState('');
   const [passwordField, setPasswordField] =useState('');
   const [passwordConf, setPasswordConf]   =useState('');
@@ -35,7 +33,7 @@ export default function SignUp({navigation}) {
       if (passwordConf == passwordField) {
         
         /*inserir na tebela de usuários*/
-        let req = await Api.signUp(emailField, nameField, passwordField, celularField, apelidoField, dataNasc);
+        let req = await Api.signUp(emailField, nameField, passwordField, celularField, apelidoField);
 
         if(req.id != ' '){
 
@@ -77,24 +75,10 @@ export default function SignUp({navigation}) {
          <Text style={style.subTitle}>Cadastro</Text>
           
           <TextInput
-          placeholder={'Nome '}
+          placeholder={'Nome da Barbearia '}
           style={style.containerInput}
           keyboardType={'default'}
           onChangeText={t=>setNameField(t)}/> 
-
-          <TextInput
-          placeholder={'Apelido'}
-          style={style.containerInput}
-          keyboardType={'default'}
-          value={apelidoField}
-          onChangeText={t=>setApelidoField(t)}/> 
-
-          <TextInput
-          placeholder={'Data de nascimento'}
-          style={style.containerInput}
-          keyboardType={'numeric'}
-          value={dataNasc}
-          onChangeText={t=>setdataNasc(t)}/> 
 
           <TextInput
           placeholder={'E-mail'}
@@ -103,11 +87,25 @@ export default function SignUp({navigation}) {
           onChangeText={t=>setEmailField(t)}/>
 
           <TextInput
-          placeholder={'Celular'}
+          placeholder={'Telefone de contato'}
           style={style.containerInput}
           keyboardType={'default'}
           value={celularField}
           onChangeText={t=>setCelularField(t)}/> 
+
+          <TextInput
+          placeholder={'CNPJ da Barbearia'}
+          style={style.containerInput}
+          keyboardType={'default'}
+          value={apelidoField}
+          onChangeText={t=>setApelidoField(t)}/> 
+
+          <TextInput
+          placeholder={'Nome do Responsável'}
+          style={style.containerInput}
+          keyboardType={'default'}
+          value={apelidoField}
+          onChangeText={t=>setApelidoField(t)}/> 
 
           <TextInput
           placeholder={'Senha'}
@@ -122,9 +120,12 @@ export default function SignUp({navigation}) {
           onChangeText={t=>setPasswordConf(t)}/>
 
         
-
         <CustomButton onPress={handlerButtonCadastrar}>
           <CustomButtonText>Cadastrar</CustomButtonText>
+        </CustomButton>
+
+        <CustomButton onPress={ () => navigation.navigate('SignIn')}>
+          <CustomButtonText>Dados bancários</CustomButtonText>
         </CustomButton>
 
         <SingButtonArea onPress={ () => navigation.navigate('SignIn') }>

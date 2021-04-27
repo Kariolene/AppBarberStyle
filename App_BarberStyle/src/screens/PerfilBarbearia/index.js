@@ -1,7 +1,6 @@
 import React, { useState }  from 'react';
-import { View, Text, StyleSheet, TextInput, ScrollView } from 'react-native';
-import Dialog, { DialogFooter, DialogButton, DialogContent, DialogActions, DialogTitle } from 'react-native-popup-dialog';
-
+import { View, Text, StyleSheet, TextInput } from 'react-native';
+import Dialog, { DialogFooter, DialogButton, DialogContent, DialogActions }  from 'react-native-popup-dialog';
 import {useNavigation} from "@react-navigation/native";
 import Api from '../../services/Api';
 import { 
@@ -13,13 +12,13 @@ import {
 } from './style';
 
 
-export default function PerfilUser({route,navigation}) {
+export default function PerfilBarbearia({route,navigation}) {
 
 
 //...........................................................................
 /*Definição de valores transferidos entre screens*/
 
-  const { id,email, name, password , apelido, celular, tokenUser} = route.params;
+  const { id,email, name, password } = route.params;
 
 //...........................................................................
 /*Hooks que permitem digitar campos da tela*/
@@ -27,8 +26,6 @@ export default function PerfilUser({route,navigation}) {
   const [nameField,     setNameField]     = useState(name);//Exibir com valores cadastrados
   const [emailField,    setEmailField]    = useState(email);
   const [passwordField, setPasswordField] = useState(password);
-  const [celularField, setCelularField]   = useState(celular);
-  const [apelidoField, setApelidoField]   = useState(apelido);
 
 
 //...........................................................................
@@ -39,11 +36,14 @@ export default function PerfilUser({route,navigation}) {
     if(emailField != '' && nameField != '' && passwordField != '' ){
 
       /*atualizar na tebela de usuários*/
-      let req = await Api.signUpAtualize(id,emailField, nameField, passwordField, celularField, apelidoField);
-       
+      let req = await Api.signUpAtualize(id,emailField, nameField, passwordField);
+
       if(req.id == id){
 
          alert("Atualizado com sucesso!");
+
+        //Atualizar na tabela de autenticação
+        let req2 = await Api.signInAtualize(id,emailField, passwordField);
       
       } else {
         alert("Verifique os dados no seu cadastro");
@@ -58,11 +58,9 @@ export default function PerfilUser({route,navigation}) {
 //...........................................................................
 // Ação do botão deletar perfil -> exibição do pop up 
   const [popupExibir, setPopupExibir] = useState(false); 
-  const [showDeleteOk, setDeleteOk] = useState(false); 
-
- 
-  const showDialog = () =>   setPopupExibir(true);
-  const hideDialog = () =>   setPopupExibir(false);
+  
+  const showDialog = () => setPopupExibir(true);
+  const hideDialog = () => setPopupExibir(false);
 
   const dialogOk  = async () => {
     
@@ -72,9 +70,15 @@ export default function PerfilUser({route,navigation}) {
     let req = await Api.signUpDelete(id);
 
     if(req.id == id){
-       
+
+      alert("Conta deletada.");
+
+      //Atualizar na tabela de autenticação
+      let req2 = await Api.signInDelete(id);
+        
+      //Voltar para tela de login
       navigation.reset({ routes: [{name: 'SignIn'}]});
-      
+
     } else {
       alert("Algo deu errado");
     }
@@ -85,14 +89,15 @@ export default function PerfilUser({route,navigation}) {
     return (
 
       <Container>
-       <ScrollView>
 
-         <View style={style.subContainer}>
          <Text style={style.title}>BarberStyle</Text>
-         <Text style={style.subTitle}>Perfil do Usuário</Text>
-      
+         <Text style={style.subTitle}>Meu Perfil</Text>
+        
+         {/*Container com inputs do perfil*/}
+        <View style={style.subContainer}>
+        
           <TextInput
-          placeholder={'Nome completo'}
+          placeholder={'Nome '}
           style={style.containerInput}
           keyboardType={'default'}
           value={nameField}
@@ -100,15 +105,7 @@ export default function PerfilUser({route,navigation}) {
           /> 
 
           <TextInput
-          placeholder={'Apelido'}
-          style={style.containerInput}
-          keyboardType={'default'}
-          value={apelidoField}
-          onChangeText={t=>setApelidoField(t)}
-          /> 
-
-          <TextInput
-          placeholder={'E-mail'}
+          placeholder={'name@example.com'}
           style={style.containerInput}
           keyboardType={'email-address'}
           value={emailField}
@@ -116,39 +113,27 @@ export default function PerfilUser({route,navigation}) {
           />
 
           <TextInput
-          placeholder={'Celular'}
-          style={style.containerInput}
-          keyboardType={'default'}
-          value={celularField}
-          onChangeText={t=>setCelularField(t)}
-          /> 
-
-          <TextInput
           placeholder={'Senha'}
           style={style.containerInput}
           secureTextEntry={true}
           value={passwordField}
-          onChangeText={t=>setPasswordField(t)}/>
+          onChangeText={t=>setPasswordField(t)}
+          />
 
+        </View>
 
         <CustomButton onPress={handlerButtonAtualizar}>
           <CustomButtonText>Atualizar</CustomButtonText>
         </CustomButton>
 
         <SingButtonArea onPress={ () => navigation.navigate('SignIn') }>
-        <SingButtonTextBold>Formas de pagamento</SingButtonTextBold>
-        </SingButtonArea>
-
-        <SingButtonArea onPress={ () => navigation.navigate('SignIn') }>
         <SingButtonTextBold>Fazer Login</SingButtonTextBold>
         </SingButtonArea>
-   
+        
         <SingButtonArea onPress={showDialog}>
         <SingButtonTextBold>Deletar conta</SingButtonTextBold>
-       </SingButtonArea>
-
-       <View >
-         <Dialog
+        <Dialog
+          title="Deletar conta"
           visible={popupExibir}
           footer={
             <DialogFooter>
@@ -162,27 +147,20 @@ export default function PerfilUser({route,navigation}) {
               />
             </DialogFooter>
           }>
-          <DialogTitle title={'Deletar conta'} style={{ color:'#0F0F0E'}}></DialogTitle>
           <DialogContent> Confirmar exclusão de conta?</DialogContent>
         </Dialog>
-       </View>
-     
-        </View>
-        </ScrollView>
+       </SingButtonArea>
+
+
         </Container>
     );}
   
 
   const style = StyleSheet.create({
 
-    scrollView: {
-      marginHorizontal:1,
-    },
-
-
     /*Style para o titulo da screen*/
     title:{
-      marginTop:30,
+      marginTop:60,
       color: '#FFC82C',
       fontFamily: 'Serif',
       fontSize: 45,
@@ -194,15 +172,13 @@ export default function PerfilUser({route,navigation}) {
       color: '#FFC82C',
       fontFamily: 'Serif',
       fontSize: 30,
-      //fontWeight: 'bold',
-      alignItems:'center', 
-      justifyContent:'center',
+      fontWeight: 'bold',
     },
 
     subContainer:{
       alignItems:'center', 
       justifyContent:'center',
-      padding: 45,
+      padding: 10,
     },
 
     containerInput:{
@@ -213,7 +189,7 @@ export default function PerfilUser({route,navigation}) {
       justifyContent: 'center',
       alignItems: 'center',
       width: 260,
-      padding: 10,
+      padding: 15,
       margin: 5,
       color:'#FFC82C',
     },
