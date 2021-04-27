@@ -128,8 +128,7 @@ export default function PerfilUser({route,navigation}) {
           style={style.containerInput}
           secureTextEntry={true}
           value={passwordField}
-          onChangeText={t=>setPasswordField(t)}
-          />
+          onChangeText={t=>setPasswordField(t)}/>
 
 
         <CustomButton onPress={handlerButtonAtualizar}>
@@ -168,8 +167,6 @@ export default function PerfilUser({route,navigation}) {
         </Dialog>
        </View>
      
-
-
         </View>
         </ScrollView>
         </Container>
