@@ -9,6 +9,7 @@ background-color: #0F0F0E;
 opacity: 80%;
 flex: 1;
 align-items: center;
+padding:50px;
 `;
 
 //........................................................

@@ -1,7 +1,6 @@
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import React from 'react';
-import Favoritos from '../screens/Favoritos';
-import Agenda    from '../screens/Agenda';
+import Agenda from '../screens/Agenda';
 import SignInBarbearia from '../screens/SignInBarbearia';
 import HomeBarbearia from '../screens/HomeBarbearia';
 import PerfilBarbearia from '../screens/PerfilBarbearia';
@@ -27,6 +26,9 @@ export default function DrawerStack({navigation}){
             <Drawer.Screen name = "Logout"          component= {SignInBarbearia}/>   
             <Drawer.Screen name = "Perfil"          component= {PerfilBarbearia}/>   
             <Drawer.Screen name = "Buscar"          component= {Buscar} />
+            <Drawer.Screen name = "Agenda"          component= {Agenda}/>         
+            <Drawer.Screen name = "Perfil"          component= {PerfilBarbearia}/>
+            <Drawer.Screen name = "Logout"          component= {SignInBarbearia}/>    
         </Drawer.Navigator>
     )
 }

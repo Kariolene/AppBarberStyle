@@ -1,9 +1,10 @@
-import  React , { useState }  from 'react';
+import  React , { useState, useContext }  from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, Alert } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import UserContext from '../../contexts/UserContext';
 import SignInput from  '../../components/SingInput';
 import Api from '../../services/Api';
+
 import { 
   Container, 
   Title,
@@ -19,18 +20,21 @@ import {
 
 export default function SignInBarbearia({navigation}){
 
- 
+  const { nome, setNome, userId ,setUserId} = useContext(UserContext);
+
 //...........................................................................
 /*Hooks que permitem digitar e-mail/senha na tela ou alterar o que foi digitado*/
 
-  const [id, setId] = useState('');
-  const [passwordField, setPasswordField] = useState('');
-  
+  const [id, setId] = useState('1');
+  const [passwordField, setPasswordField] = useState('123');
+
 //...........................................................................
 /*Ação do botão de login do usuário*/
   const handlerButtonLoginClick = async () =>{
  
      if(id != '' && passwordField != ''){   
+        
+       setUserId(id);
 
         let json = await Api.getUser(id);
 
@@ -38,7 +42,7 @@ export default function SignInBarbearia({navigation}){
           
             if(json.password == passwordField ) {
               
-                navigation.reset({routes: [{name: 'HomeUser'}]});
+                navigation.navigate('HomeBarbearia', {id: id});
                 
             }else{
               alert("Senha inválida.");
@@ -90,9 +94,8 @@ const handlerLinkUser = ()=>{
              placeholder = "Senha"
              value={passwordField}
              onChangeText={t=>setPasswordField(t)}
-             password={true}
-             />
-          
+             password={true}/>
+
           </InputArea>
           
           <CustomButton onPress={handlerButtonLoginClick}>

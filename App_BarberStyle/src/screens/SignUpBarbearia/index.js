@@ -17,38 +17,48 @@ export default function SignUpBarbeiro({navigation}) {
   //.............................................................................
   /*Hooks que permitem digitar campos da tela*/
 
-  const [nameField, setNameField]         =useState('');
-  const [emailField, setEmailField]       =useState('');
-  const [passwordField, setPasswordField] =useState('');
-  const [passwordConf, setPasswordConf]   =useState('');
-  
-  const [celularField, setCelularField]   = useState('');
-  const [apelidoField, setApelidoField]   = useState('');
+  const [nameBarber, setNameBaber]          = useState('');
+  const [emailBarber, setEmailBarber]       = useState('');
+  const [passwordBarber, setPasswordBarber] = useState('');
+  const [passwordConf, setPasswordConf]     = useState('');
+  const [nomeResp, setNomeResp]             = useState('');
+  const [celularField, setCelular]          = useState('');
+  const [cnpj, setCnpj]                     = useState('');
 
 
   const handlerButtonCadastrar = async () =>{
 
-    if(emailField != '' && nameField != '' && passwordField != '' ){
+    if( nameBarber     != '' && 
+        emailBarber    != '' && 
+        cnpj           != '' && 
+        passwordBarber != '' ){
 
-      if (passwordConf == passwordField) {
+      if (passwordConf == passwordBarber) {
         
-        /*inserir na tebela de usuários*/
-        let req = await Api.signUp(emailField, nameField, passwordField, celularField, apelidoField);
+        /*inserir na tebela de barbearias*/
+        let req = await Api.signUpBarber(
+                            nameBarber, 
+                            nomeResp,
+                            celularField,
+                            emailBarber, 
+                            passwordBarber,                          
+                            cnpj);
 
         if(req.id != ' '){
 
           alert("Cadastro realizado! Seu usuário é: "+req.id);
 
-          navigation.navigate('PerfilUser',{ 
-            id:        req.id, 
-            email:     emailField, 
-            name:      nameField, 
-            password:  passwordField,
-            celular:   celularField,
-            apelido:   apelidoField });
+          navigation.navigate('PerfilBabearia',{ 
+            id:               req.id,
+            nameBarbearia:    nameBarber, 
+            nameResponsavel:  nomeResp,
+            contatoBarbearia: celularField,
+            email:            emailBarber, 
+            passwordBarber:   passwordBarber,                          
+            cnpj:             cnpj});
         
-      } else {
-        alert("Verifique os dados no seu cadastro");
+       } else {
+        alert("Verifique os dados do cadastro");
         }
 
       } else{
@@ -56,7 +66,7 @@ export default function SignUpBarbeiro({navigation}) {
       }
 
      } else {
-      alert("Favor preencher todos os campos obrigatórios.");
+      alert("Campos com ' * ', são obrigatórios favor preencher.");
      }
     
   };
@@ -72,70 +82,74 @@ export default function SignUpBarbeiro({navigation}) {
          <View style={style.subContainer}>
 
          <Text style={style.title}>BarberStyle</Text>
-         <Text style={style.subTitle}>Cadastro</Text>
+         <Text style={style.subTitle}>Cadastro de Barbearia</Text>
           
+         <View style={{alignContent:'flex-start'}}>
+         <Text style={style.textInput}>*Nome da Barbearia:</Text>
           <TextInput
-          placeholder={'Nome da Barbearia '}
+          placeholder={' * Nome da Barbearia '}
           style={style.containerInput}
           keyboardType={'default'}
-          onChangeText={t=>setNameField(t)}/> 
+          onChangeText={t=>setNameBaber(t)}/> 
 
+         <Text style={style.textInput}>*E-mail:</Text>
           <TextInput
-          placeholder={'E-mail'}
+          placeholder={' * E-mail'}
           style={style.containerInput}
           keyboardType={'email-address'}
-          onChangeText={t=>setEmailField(t)}/>
+          onChangeText={t=>setEmailBarber(t)}/>
 
+         <Text style={style.textInput}>Contato:</Text>
           <TextInput
           placeholder={'Telefone de contato'}
           style={style.containerInput}
           keyboardType={'default'}
-          value={celularField}
-          onChangeText={t=>setCelularField(t)}/> 
+          onChangeText={t=>setCelular(t)}/> 
 
+          <Text style={style.textInput}>*CNPJ:</Text>
           <TextInput
-          placeholder={'CNPJ da Barbearia'}
+          placeholder={' * CNPJ da Barbearia'}
           style={style.containerInput}
           keyboardType={'default'}
-          value={apelidoField}
-          onChangeText={t=>setApelidoField(t)}/> 
+          onChangeText={t=>setCnpj(t)}/> 
 
+          <Text style={style.textInput}>Nome do Responsavel:</Text>
           <TextInput
           placeholder={'Nome do Responsável'}
           style={style.containerInput}
           keyboardType={'default'}
-          value={apelidoField}
-          onChangeText={t=>setApelidoField(t)}/> 
+          onChangeText={t=>setNomeResp(t)}/> 
 
+          <Text style={style.textInput}>* Senha:</Text>
           <TextInput
-          placeholder={'Senha'}
+          placeholder={'* Senha'}
           style={style.containerInput}
           secureTextEntry={true}
-          onChangeText={t=>setPasswordField(t)}/>
+          onChangeText={t=>setPasswordBarber(t)}/>
 
+          <Text style={style.textInput}>*Confirmar senha:</Text>
           <TextInput
-          placeholder={'Confirme a senha'}
+          placeholder={'* Confirme a senha'}
           style={style.containerInput}
           secureTextEntry={true}
           onChangeText={t=>setPasswordConf(t)}/>
-
+            </View>
         
         <CustomButton onPress={handlerButtonCadastrar}>
-          <CustomButtonText>Cadastrar</CustomButtonText>
+          <CustomButtonText>Salvar</CustomButtonText>
         </CustomButton>
 
-        <CustomButton onPress={ () => navigation.navigate('SignIn')}>
-          <CustomButtonText>Dados bancários</CustomButtonText>
-        </CustomButton>
+        {/*<SingButtonArea onPress={ () => navigation.navigate('SignInBarbearia') }>
+        <SingButtonTextBold>Dados bancários</SingButtonTextBold>
+        </SingButtonArea>*/}
 
-        <SingButtonArea onPress={ () => navigation.navigate('SignIn') }>
+        <SingButtonArea onPress={ () => navigation.navigate('SignInBarbearia') }>
         <SingButtonTextBold>Fazer Login</SingButtonTextBold>
         </SingButtonArea>
 
         </View>
         </ScrollView>
         </Container>
-   
       
     );}
   
@@ -148,18 +162,23 @@ export default function SignUpBarbeiro({navigation}) {
 
     /*Style para o titulo da screen*/
     title:{
-      marginTop:40,
+     // marginTop:20,
       color: '#FFC82C',
       fontFamily: 'Serif',
       fontSize: 45,
       padding: 20,
     },
 
+    textInput:{
+      marginTop: 15,
+       color:'#FFC82C',
+     },
+
     /*Style para o subtitulo da screen*/
     subTitle:{
       color: '#FFC82C',
       fontFamily: 'Serif',
-      fontSize: 30,
+      fontSize: 25,
       //fontWeight: 'bold',
       alignItems:'center', 
       justifyContent:'center',
@@ -169,6 +188,7 @@ export default function SignUpBarbeiro({navigation}) {
       alignItems:'center', 
       justifyContent:'center',
       paddingHorizontal: 45,
+      margin:50,
     },
 
     containerInput:{
