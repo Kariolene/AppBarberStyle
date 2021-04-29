@@ -1,6 +1,10 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
+import Api from '../../services/Api';
+import Barbeiro from '../../components/Barbeiro';
 
 import { 
   Container,
@@ -11,14 +15,17 @@ import {
   SearchInput,
   SearchFinder,
   LoadingIcon,
+
+  ListArea,
+  Barbeiro,
 } from './style';
 
-import { Fontisto } from '@expo/vector-icons';
+//import { Fontisto } from '@expo/vector-icons';
 
 
 export default function Buscar({navigation}) {
 //Buscar Barbeiros
-    /*const navigation = useNavigation();
+    const navigation = useNavigation();
     const [loading, setLoading] = useState(false);
     const [list, setList] = useState([]);
     
@@ -26,13 +33,32 @@ export default function Buscar({navigation}) {
       setLoading(true);
       setList([]);
 
-      getBarbers();
+      getBarber();
     }
 
-    const getBarbers = ()=>{
+    const getBarber = async ()=>{
+      setLoading(true);
+      setList([]);
 
+      let res = await Api.getBarber();
+      if(res.error == ''){
+        //Setar a localização
+        //if(res.loc){
+        //  setLocationText(res.loc);
+        //}
+        setList(res.data);
+      }else{
+        alert("Erro: "+res.error);
+      }
+
+      setLoading(false);
     }
-    */
+
+    useEffect(()=>{
+      console.log(res)
+      getBarber();
+    }, []);
+    //*/
     return (
       <Container>
             
@@ -52,7 +78,11 @@ export default function Buscar({navigation}) {
           
             <LoadingIcon size="small" color="#FFF"/>
 
-
+          <ListArea>
+            {list.map((item, k)=>(
+              <Barbeiro key={k} data={item} />
+            ))}
+          </ListArea>
 
         </Scroller>
       </Container>
