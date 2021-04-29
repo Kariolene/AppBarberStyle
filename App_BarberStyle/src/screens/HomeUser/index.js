@@ -1,12 +1,21 @@
-import * as React from 'react';
+import  React , {useContext, useState }from 'react';
 import { View, Text, Button, row, StyleSheet} from 'react-native';
+import UserContext from '../../contexts/UserContext';
 import { 
   Container, 
  } from './style';
- import FooterBar from '../../components/FooterBar';
 
 
  export default function HomeUser({navigation}) {
+
+  const { stgNome,     setStgNome,
+          stgUserId,   setStgUserId,
+          stgEmail,    setStgEmail,
+          stgPassword, setStgPassword,
+          stgCelular,  setStgCelular,
+          stgApelido,  setStgApelido,
+          stgDataNasc, setStgDataNasc } = useContext(UserContext);
+  
   return (
     <Container >
          <Text style={style.title}>BarberStyle</Text>

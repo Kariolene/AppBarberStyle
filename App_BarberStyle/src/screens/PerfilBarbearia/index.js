@@ -77,7 +77,7 @@ export default function PerfilBarbearia({route,navigation}) {
       let req2 = await Api.signInDelete(id);
         
       //Voltar para tela de login
-      navigation.reset({ routes: [{name: 'SignIn'}]});
+      navigation.reset({ routes: [{name: 'SignInBabearia'}]});
 
     } else {
       alert("Algo deu errado");
@@ -91,7 +91,7 @@ export default function PerfilBarbearia({route,navigation}) {
       <Container>
 
          <Text style={style.title}>BarberStyle</Text>
-         <Text style={style.subTitle}>Meu Perfil</Text>
+         <Text style={style.subTitle}>Perfil da Barbearia</Text>
         
          {/*Container com inputs do perfil*/}
         <View style={style.subContainer}>
@@ -150,15 +150,13 @@ export default function PerfilBarbearia({route,navigation}) {
           <DialogContent> Confirmar exclusão de conta?</DialogContent>
         </Dialog>
        </SingButtonArea>
-
-
-        </Container>
+      </Container>
     );}
   
 
   const style = StyleSheet.create({
 
-    /*Style para o titulo da screen*/
+    /*Style titulo da screen*/
     title:{
       marginTop:60,
       color: '#FFC82C',
@@ -167,12 +165,11 @@ export default function PerfilBarbearia({route,navigation}) {
       padding: 20,
     },
 
-    /*Style para o subtitulo da screen*/
+    /*Style subtitulo da screen*/
     subTitle:{
       color: '#FFC82C',
       fontFamily: 'Serif',
-      fontSize: 30,
-      fontWeight: 'bold',
+      fontSize: 25,
     },
 
     subContainer:{

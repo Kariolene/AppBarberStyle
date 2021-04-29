@@ -1,8 +1,6 @@
-import  React , { useState }  from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { View, Text, StyleSheet, Alert } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import  React , { useState, useContext }  from 'react';
 import SignInput from  '../../components/SingInput';
+import UserContext from '../../contexts/UserContext';
 import Api from '../../services/Api';
 import { 
   Container, 
@@ -12,19 +10,26 @@ import {
   SingButtonTextBold,
   SingButtonArea,
   InputArea
-
  } from './style';
 
 
 
-export default function SignIn({ route, navigation}){
+export default function SignIn({navigation}){
 
- 
+
+  const { stgNome,     setStgNome,
+          stgUserId,   setStgUserId,
+          stgEmail,    setStgEmail,
+          stgPassword, setStgPassword,
+          stgCelular,  setStgCelular,
+          stgApelido,  setStgApelido,
+          stgDataNasc, setStgDataNasc } = useContext(UserContext);
+      
 //...........................................................................
 /*Hooks que permitem digitar e-mail/senha na tela ou alterar o que foi digitado*/
 
-  const [id, setId] = useState('');
-  const [passwordField, setPasswordField] = useState('');
+  const [id,            setId]            = useState('1');
+  const [passwordField, setPasswordField] = useState('123');
   
 //...........................................................................
 /*Ação do botão de login do usuário*/
@@ -37,7 +42,8 @@ export default function SignIn({ route, navigation}){
         if( json.id == id ){
           
             if(json.password == passwordField ) {
-              
+                
+                setStgUserId(id);
                 navigation.reset({routes: [{name: 'HomeUser'}]});
                 
             }else{

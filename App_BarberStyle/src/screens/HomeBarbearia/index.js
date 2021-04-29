@@ -1,19 +1,21 @@
-import * as React from 'react';
-import { View, Text, Button, row, StyleSheet} from 'react-native';
-import { 
-  Container, 
- } from './style';
- import FooterBar from '../../components/FooterBar';
+import  React, {useContext} from 'react';
+import { View, Text, Button, StyleSheet} from 'react-native';
+import { Container,  } from './style';
+import UserContext from '../../contexts/UserContext';
+
 
 
  export default function HomeBarbearia({navigation}) {
+   
+  const { nome, setNome, userId ,setUserId} = useContext(UserContext);
+
+  
   return (
-    <Container >
+    <Container>
          <Text style={style.title}>BarberStyle</Text>
-         <Text style={style.subTitle}>Meu Perfil</Text>
-          <row>
-            <Button title="Menu" onPress={() => navigation.toggleDrawer()} />
-          </row>
+         <Text style={style.subTitle}>HomeBarbearia</Text>
+         <Button title="Menu" onPress={() => navigation.toggleDrawer()} />
+         
     </Container>
   );
 }

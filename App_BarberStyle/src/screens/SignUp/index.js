@@ -1,6 +1,7 @@
-import React, { useState }  from 'react';
-import { View, Text,StatusBar, Button, StyleSheet,SafeAreaView, ScrollView, TextInput,Alert } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import React, { useState, useContext }  from 'react';
+import { View, Text, StyleSheet,ScrollView, TextInput} from 'react-native';
+import Dialog, { DialogFooter, DialogButton, DialogContent, DialogActions, DialogTitle } from 'react-native-popup-dialog';
+import UserContext from '../../contexts/UserContext';
 import Api from '../../services/Api';
 import { 
   Container ,
@@ -14,18 +15,37 @@ import {
 
 export default function SignUp({navigation}) {
 
-  //.............................................................................
+ const { stgNome,     setStgNome,
+         stgUserId,   setStgUserId,
+         stgEmail,    setStgEmail,
+         stgPassword, setStgPassword,
+         stgCelular,  setStgCelular,
+         stgApelido,  setStgApelido,
+         stgDataNasc, setStgDataNasc } = useContext(UserContext);
+
+  //................. ............................................................
   /*Hooks que permitem digitar campos da tela*/
 
-  const [nameField, setNameField]         =useState('');
-  const [dataNasc, setdataNasc]           =useState('');
+  const [nameField, setNameField] =useState('');
+  const [dataNasc,  setdataNasc]  =useState('');
 
-  const [emailField, setEmailField]       =useState('');
-  const [passwordField, setPasswordField] =useState('');
-  const [passwordConf, setPasswordConf]   =useState('');
+  const [emailField,   setEmailField]    =useState('');
+  const [passwordField,setPasswordField] =useState('');
+  const [passwordConf, setPasswordConf]  =useState('');
   
-  const [celularField, setCelularField]   = useState('');
-  const [apelidoField, setApelidoField]   = useState('');
+  const [celularField, setCelularField]  =useState('');
+  const [apelidoField, setApelidoField]  =useState('');
+
+ 
+  //const [stlUsuarioId,  setStlUsuarioId]   = useState(false); 
+  const [verificarDados, setVerificarDados]   = useState(false); 
+  const [verificarSenha, setVerificarSenha]   = useState(false); 
+  const [concluirDados,  setConcluirDados]    = useState(false); 
+
+ // const closeStlUsuarioId  = () =>   setStlUsuarioId(false);
+  const closeVerificarDados = () =>  setVerificarDados(false);
+  const closeConcluirDados  = () =>  setConcluirDados(false);
+  const closeVerificarSenha = () =>  setVerificarSenha(false);
 
 
   const handlerButtonCadastrar = async () =>{
@@ -35,30 +55,46 @@ export default function SignUp({navigation}) {
       if (passwordConf == passwordField) {
         
         /*inserir na tebela de usuários*/
-        let req = await Api.signUp(emailField, nameField, passwordField, celularField, apelidoField, dataNasc);
-
+        let req = await Api.signUp(nameField, emailField, celularField, apelidoField, dataNasc,passwordField);
+        
         if(req.id != ' '){
-
+                     
+         // setStlUsuarioId(true);
           alert("Cadastro realizado! Seu usuário é: "+req.id);
+          
+          //Enviando dados pelo contexto
+          setStgNome(nameField);
+          setStgUserId(req.id);
+          setStgEmail(emailField);
+          setStgPassword(passwordField);
+          setStgCelular(celularField );
+          setStgApelido(apelidoField);
+          setStgDataNasc(dataNasc);
 
-          navigation.navigate('PerfilUser',{ 
+          //Navergar para screen do perfil
+          navigation.navigate('PerfilUser');
+         /* navigation.navigate('PerfilUser',{ 
             id:        req.id, 
-            email:     emailField, 
             name:      nameField, 
-            password:  passwordField,
+            email:     emailField, 
             celular:   celularField,
-            apelido:   apelidoField });
+            apelido:   apelidoField,
+            dataNascimento:  dataNasc,
+            password: passwordField});*/
         
       } else {
-        alert("Verifique os dados no seu cadastro");
+        //alert("Verifique os dados no seu cadastro");
+        setVerificarDados(true)
         }
 
       } else{
-        alert("Senhas diferentes, favor verificar.");
+       // alert("Senhas diferentes, favor verificar.");
+       setVerificarSenha(true)
       }
 
      } else {
-      alert("Favor preencher todos os campos obrigatórios.");
+      //alert("Favor preencher todos os campos obrigatórios.");
+      setConcluirDados(true);
      }
     
   };
@@ -76,12 +112,17 @@ export default function SignUp({navigation}) {
          <Text style={style.title}>BarberStyle</Text>
          <Text style={style.subTitle}>Cadastro</Text>
           
+        <View style={{alignContent:'flex-start'}}>
+
+         <Text style={style.textInput}>*Nome completo:</Text>
           <TextInput
-          placeholder={'Nome '}
+          placeholder={'* Nome '}
           style={style.containerInput}
           keyboardType={'default'}
+          value={nameField}
           onChangeText={t=>setNameField(t)}/> 
 
+         <Text style={style.textInput}>Apelido:</Text>
           <TextInput
           placeholder={'Apelido'}
           style={style.containerInput}
@@ -89,6 +130,7 @@ export default function SignUp({navigation}) {
           value={apelidoField}
           onChangeText={t=>setApelidoField(t)}/> 
 
+         <Text style={style.textInput}>Data de Nascimento:</Text>
           <TextInput
           placeholder={'Data de nascimento'}
           style={style.containerInput}
@@ -96,12 +138,15 @@ export default function SignUp({navigation}) {
           value={dataNasc}
           onChangeText={t=>setdataNasc(t)}/> 
 
+         <Text style={style.textInput}>*E-mail:</Text>
           <TextInput
-          placeholder={'E-mail'}
+          placeholder={'* E-mail '}
           style={style.containerInput}
           keyboardType={'email-address'}
+          value={emailField}
           onChangeText={t=>setEmailField(t)}/>
 
+          <Text style={style.textInput}>Contato:</Text>
           <TextInput
           placeholder={'Celular'}
           style={style.containerInput}
@@ -109,20 +154,21 @@ export default function SignUp({navigation}) {
           value={celularField}
           onChangeText={t=>setCelularField(t)}/> 
 
+          <Text style={style.textInput}>*Senha:</Text>
           <TextInput
-          placeholder={'Senha'}
+          placeholder={'* Senha'}
           style={style.containerInput}
           secureTextEntry={true}
           onChangeText={t=>setPasswordField(t)}/>
 
+          <Text style={style.textInput}>*Confirme a Senha:</Text>
           <TextInput
-          placeholder={'Confirme a senha'}
+          placeholder={'* Confirme a senha'}
           style={style.containerInput}
           secureTextEntry={true}
           onChangeText={t=>setPasswordConf(t)}/>
-
+          </View>
         
-
         <CustomButton onPress={handlerButtonCadastrar}>
           <CustomButtonText>Cadastrar</CustomButtonText>
         </CustomButton>
@@ -131,6 +177,68 @@ export default function SignUp({navigation}) {
         <SingButtonTextBold>Fazer Login</SingButtonTextBold>
         </SingButtonArea>
 
+
+       {/* <View >
+         <Dialog
+          visible={stlUsuarioId}
+          footer={
+            <DialogFooter>
+              <DialogButton
+                text="OK"
+                onPress={closeStlUsuarioId} />
+            </DialogFooter>
+          }>
+          <DialogTitle>{stgUserId}</DialogTitle>
+          <DialogContent>Cadastro realizado!</DialogContent>
+        </Dialog>
+        </View>*/}
+
+
+       <View >
+         <Dialog
+          visible={verificarDados}
+          footer={
+            <DialogFooter>
+              <DialogButton
+                text="OK"
+                onPress={closeVerificarDados} />
+            </DialogFooter>
+          }>
+          <DialogTitle></DialogTitle>
+          <DialogContent>Verifique os dados no seu cadastro</DialogContent>
+        </Dialog>
+       </View>
+
+       <View >
+         <Dialog
+          visible={verificarSenha}
+          footer={
+            <DialogFooter>
+              <DialogButton
+                text="OK"
+                onPress={closeVerificarSenha} />
+            </DialogFooter>
+          }>
+          <DialogTitle></DialogTitle>
+          <DialogContent>Senhas divergentes.</DialogContent>
+        </Dialog>
+       </View>
+
+       <View >
+         <Dialog
+          visible={concluirDados}
+          footer={
+            <DialogFooter>
+              <DialogButton
+                text="OK"
+                onPress={closeConcluirDados} />
+            </DialogFooter>
+          }>
+          <DialogTitle></DialogTitle>
+          <DialogContent>Favor preencher campos obrigatórios.</DialogContent>
+        </Dialog>
+       </View>
+     
         </View>
         </ScrollView>
         </Container>
@@ -147,7 +255,7 @@ export default function SignUp({navigation}) {
 
     /*Style para o titulo da screen*/
     title:{
-      marginTop:40,
+     // marginTop:40,
       color: '#FFC82C',
       fontFamily: 'Serif',
       fontSize: 45,
@@ -168,10 +276,19 @@ export default function SignUp({navigation}) {
       alignItems:'center', 
       justifyContent:'center',
       paddingHorizontal: 45,
+      margin:40,
+    },
+
+    textInput:{
+     // justifyContent:'left',
+     // alignContent: ,
+     marginTop: 15,
+      color:'#FFC82C',
+      //fontWeight: 'bold',
     },
 
     containerInput:{
-      placeholderTextColor:'#FFC82C',
+      placeholderTextColor:'#A6A583',
       borderColor: 'gray',
       borderWidth: 1,
       borderRadius: 30,
@@ -184,6 +301,7 @@ export default function SignUp({navigation}) {
       //fontWeight: 'bold',
     },
 
+
     buttonSalvar:{
       flexDirection: 'row',
       justifyContent:'center',
@@ -195,6 +313,7 @@ export default function SignUp({navigation}) {
       fontSize: 16,
       marginLeft: 5,
     },
+    
    container:{
     backgroundColor: '#0F0F0E',
     opacity: 80,
