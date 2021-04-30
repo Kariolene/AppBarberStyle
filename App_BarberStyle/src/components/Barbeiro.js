@@ -43,7 +43,6 @@ const SeeProfileButtonText = styled.Text`
 export default ({data}) => {
     return (
         <Area>
-            <Avatar/>
             <InfoArea>
                 <UserName>{data.name}</UserName> 
                 <SeeProfileButton>

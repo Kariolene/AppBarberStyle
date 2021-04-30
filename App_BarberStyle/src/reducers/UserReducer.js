@@ -1,4 +1,4 @@
-export const initialState = {
+/*export const initialState = {
    avatar: '',
    favoritos: [],
    appointment: []
@@ -13,4 +13,4 @@ export const UserReducer = (state,action) =>{
             return state;
     }
 
-}
+}*/

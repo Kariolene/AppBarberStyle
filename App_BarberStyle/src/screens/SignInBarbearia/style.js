@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 
 //........................................
-/*Container personalizado com fundo padrão do app */
+/*Container personalizado com fundo padão do app */
 export const Container = styled.SafeAreaView`
 background-color: #0F0F0E;
 opacity: 80%;

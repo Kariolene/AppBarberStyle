@@ -1,7 +1,10 @@
 import  React , { useState, useContext }  from 'react';
-import SignInput from  '../../components/SingInput';
+import { useNavigation } from '@react-navigation/native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import UserContext from '../../contexts/UserContext';
+import SignInput from  '../../components/SingInput';
 import Api from '../../services/Api';
+
 import { 
   Container, 
   Title,
@@ -10,41 +13,36 @@ import {
   SingButtonTextBold,
   SingButtonArea,
   InputArea
+
  } from './style';
 
 
 
-export default function SignIn({navigation}){
+export default function SignInBarbearia({navigation}){
 
+  const { nome, setNome, userId ,setUserId} = useContext(UserContext);
 
-  const { stgNome,     setStgNome,
-          stgUserId,   setStgUserId,
-          stgEmail,    setStgEmail,
-          stgPassword, setStgPassword,
-          stgCelular,  setStgCelular,
-          stgApelido,  setStgApelido,
-          stgDataNasc, setStgDataNasc } = useContext(UserContext);
-      
 //...........................................................................
 /*Hooks que permitem digitar e-mail/senha na tela ou alterar o que foi digitado*/
 
-  const [id,            setId]            = useState('1');
+  const [id, setId] = useState('1');
   const [passwordField, setPasswordField] = useState('123');
-  
+
 //...........................................................................
 /*Ação do botão de login do usuário*/
   const handlerButtonLoginClick = async () =>{
  
      if(id != '' && passwordField != ''){   
+        
+       setUserId(id);
 
         let json = await Api.getUser(id);
 
         if( json.id == id ){
           
             if(json.password == passwordField ) {
-                
-                setStgUserId(id);
-                navigation.reset({routes: [{name: 'HomeUser'}]});
+              
+                navigation.navigate('HomeBarbearia', {id: id});
                 
             }else{
               alert("Senha inválida.");
@@ -62,17 +60,17 @@ export default function SignIn({navigation}){
 
 //...........................................................................
 /*Cadastrar usuário*/
-  const handlerLinkClick = ()=>{
+  const handlerLinkSignUpBarber = ()=>{
    navigation.reset({
-     routes: [{name: 'SignUp'}]
+     routes: [{name: 'SignUpBarbearia'}]
     });
   }
 
 //...........................................................................
 /*Trocar de conta*/
-const handlerLinkBabearias = ()=>{
+const handlerLinkUser = ()=>{
   navigation.reset({
-    routes: [{name: 'SignInBarbearia'}]
+    routes: [{name: 'SignIn'}]
    });
  }
 
@@ -86,7 +84,7 @@ const handlerLinkBabearias = ()=>{
        
           <InputArea>
           <SignInput
-             placeholder = "Usuário"
+             placeholder = "Usuário da Barbearia"
              value={id}
              onChangeText={t=>setId(t)}>
           </SignInput>
@@ -96,9 +94,8 @@ const handlerLinkBabearias = ()=>{
              placeholder = "Senha"
              value={passwordField}
              onChangeText={t=>setPasswordField(t)}
-             password={true}
-             />
-          
+             password={true}/>
+
           </InputArea>
           
           <CustomButton onPress={handlerButtonLoginClick}>
@@ -106,14 +103,14 @@ const handlerLinkBabearias = ()=>{
           </CustomButton>
 
           {/* Botão do tipo link*/}
-          <SingButtonArea onPress={handlerLinkClick}>
-            <SingButtonTextBold>Cadastre-se</SingButtonTextBold>
+          <SingButtonArea onPress={handlerLinkSignUpBarber}>
+            <SingButtonTextBold>Cadastrar Barbearia</SingButtonTextBold>
           </SingButtonArea>
 
           
           {/* Botão do tipo link*/}
-          <SingButtonArea onPress={handlerLinkBabearias}>
-          <SingButtonTextBold>Barbearias</SingButtonTextBold>
+          <SingButtonArea onPress={handlerLinkUser}>
+          <SingButtonTextBold>Trocar tipo de conta</SingButtonTextBold>
         </SingButtonArea>
       
       </Container>
