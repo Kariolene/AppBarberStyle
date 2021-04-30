@@ -23,7 +23,7 @@ export default function MainStack({navigation}) {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
 
-       { /*<Stack.Screen name="SignIn"          component={SignIn} />
+        <Stack.Screen name="SignIn"          component={SignIn} />
         <Stack.Screen name="SignUp"          component={SignUp} />
         <Stack.Screen name="HomeUser"        component={DrawerStack}/>
         <Stack.Screen name="PerfilUser"      component={PerfilUser}/>
@@ -32,7 +32,7 @@ export default function MainStack({navigation}) {
         <Stack.Screen name="Favoritos"       component={Favoritos}/>
  
         <Stack.Screen name="SignInBarbearia" component={SignInBarbearia} /> 
-        <Stack.Screen name="SignUpBarbearia" component={SignUpBarbearia} />*/}
+        <Stack.Screen name="SignUpBarbearia" component={SignUpBarbearia} />
         <Stack.Screen name="HomeBarbearia"   component={DrawerStackBarber}/>
         <Stack.Screen name="PerfilBarbearia" component={PerfilBarbearia}/>
        

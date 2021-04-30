@@ -25,8 +25,8 @@ export default function SignInBarbearia({navigation}){
 //...........................................................................
 /*Hooks que permitem digitar e-mail/senha na tela ou alterar o que foi digitado*/
 
-  const [id, setId] = useState('1');
-  const [passwordField, setPasswordField] = useState('123');
+  const [id, setId] = useState('');
+  const [passwordField, setPasswordField] = useState('');
 
 //...........................................................................
 /*Ação do botão de login do usuário*/

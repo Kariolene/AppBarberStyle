@@ -9,7 +9,7 @@ export default {
 //........................................................
 
 //  Cadastrar usuário
-    signUp: async (name, email, celular,apelido, password, dataNascimento ) => {
+    signUp: async (name, email, celular,apelido, dataNascimento, password ) => {
 
         var link = '/appBarberStyle/users/';
             var link2 = BASE_API+link;
@@ -20,7 +20,7 @@ export default {
                     Accept:'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({name, email, celular,apelido, password, dataNascimento})});
+                body: JSON.stringify({name, email, celular,apelido,dataNascimento, password })});
                 const json = await req.json();
                 return json;
             

@@ -24,9 +24,9 @@ import FlatlistServico from '../../components/FlatlistServico';
         <Text style={style.subTitle}>HomeBarbearia</Text>
        </View>
 
-       <SafeAreaView style={style.container}>
+       {/*<SafeAreaView style={style.container}>
         <FlatlistServico/>
-       </SafeAreaView>
+  </SafeAreaView>*/}
 
     </Container>
   );
