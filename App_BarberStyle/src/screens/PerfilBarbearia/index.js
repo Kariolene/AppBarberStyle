@@ -1,8 +1,9 @@
-import React, { useState }  from 'react';
+import React, { useState, useContext }  from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import Dialog, { DialogFooter, DialogButton, DialogContent, DialogActions }  from 'react-native-popup-dialog';
 import {useNavigation} from "@react-navigation/native";
 import Api from '../../services/Api';
+import UserContext from '../../contexts/UserContext';
 import { 
   Container ,
   CustomButtonText,
@@ -12,13 +13,13 @@ import {
 } from './style';
 
 
-export default function PerfilBarbearia({route,navigation}) {
+export default function PerfilBarbearia({navigation}) {
 
 
 //...........................................................................
 /*Definição de valores transferidos entre screens*/
 
-  const { id,email, name, password } = route.params;
+//const {stgUserId } = useContext(UserContext);
 
 //...........................................................................
 /*Hooks que permitem digitar campos da tela*/

@@ -257,6 +257,24 @@ signUpDelete: async (id) => {
             return json;
     },
 
+//Obter barbearia
+
+    getBarberAll: async()=>{
+
+        var link = '/appBarberStyle/barbearia/1';
+        var link2 = BASE_API+link;
+
+        const req = await fetch(`${link2}`,{
+            method: 'GET',
+            headers: {
+                Accept:'application/json',
+                'Content-Type': 'application/json'
+            },
+           // body: JSON.stringify({email,name,password})
+        });
+            const json = await req.json();
+            return JSON.stringify(json);
+    },
 //........................................................
 // Serviços da barbearia
 //........................................................

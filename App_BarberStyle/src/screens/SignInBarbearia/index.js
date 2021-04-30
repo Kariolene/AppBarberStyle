@@ -20,7 +20,7 @@ import {
 
 export default function SignInBarbearia({navigation}){
 
-  const { nome, setNome, userId ,setUserId} = useContext(UserContext);
+  const {stgNome, setStgNome, stgUserId, setStgUserId} = useContext(UserContext);
 
 //...........................................................................
 /*Hooks que permitem digitar e-mail/senha na tela ou alterar o que foi digitado*/
@@ -34,8 +34,7 @@ export default function SignInBarbearia({navigation}){
  
      if(id != '' && passwordField != ''){   
         
-       setUserId(id);
-
+      
         let json = await Api.getUser(id);
 
         if( json.id == id ){
