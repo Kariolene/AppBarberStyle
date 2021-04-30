@@ -242,6 +242,23 @@ signUpDelete: async (id) => {
                 return json;
             
         },
+
+        signInBarber: async (id) => {
+
+                var link = '/appBarberStyle/barbearia/'+id;
+                var link2 = BASE_API+link;
+        
+                const req = await fetch(`${link2}`,{
+                    method: 'GET',
+                    headers: {
+                        Accept:'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                   // body: JSON.stringify({email,name,password})
+                });
+                    const json = await req.json();
+                    return json;
+            },
 //........................................................
 //Deletar  barbearia
     deleteBarber: async(id)=>{

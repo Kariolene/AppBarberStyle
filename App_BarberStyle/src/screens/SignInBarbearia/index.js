@@ -35,7 +35,7 @@ export default function SignInBarbearia({navigation}){
      if(id != '' && passwordField != ''){   
         
       
-        let json = await Api.getUser(id);
+        let json = await Api.signInBarber(id);
 
         if( json.id == id ){
           
