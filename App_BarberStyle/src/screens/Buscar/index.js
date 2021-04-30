@@ -1,10 +1,15 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Button } from 'react-native';
+import { Button, RefreshControl, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+
+import SignInput from '../../components/SingInput';
+import Rede from '../../components/Fetch';
 import Api from '../../services/Api';
 import Barbeiro from '../../components/Barbeiro';
+
+import { Feather } from '@expo/vector-icons';
 
 import { 
   Container,
@@ -17,73 +22,81 @@ import {
   LoadingIcon,
 
   ListArea,
-  Barbeiro,
+  
 } from './style';
 
-//import { Fontisto } from '@expo/vector-icons';
-
+function Item({ title }){
+  return(
+    <view style={style.item}>
+      <Text style={style.title}>{title}</Text>
+    </view>
+  );
+}
 
 export default function Buscar({navigation}) {
 //Buscar Barbeiros
-    const navigation = useNavigation();
+
     const [loading, setLoading] = useState(false);
     const [list, setList] = useState([]);
+    const [refreshing, setRefreshing] = useState(false);
     
-    const handleSearchBarber = () =>{
-      setLoading(true);
-      setList([]);
-
-      getBarber();
-    }
-
+    
     const getBarber = async ()=>{
       setLoading(true);
       setList([]);
 
       let res = await Api.getBarber();
       if(res.error == ''){
-        //Setar a localização
-        //if(res.loc){
-        //  setLocationText(res.loc);
-        //}
         setList(res.data);
       }else{
-        alert("Erro: "+res.error);
+        alert("Erro "+res.error);
       }
-
       setLoading(false);
+    }    
+
+    const onRefresh = ()=>{
+      setRefreshing(false);
+      getBarber();
     }
 
-    useEffect(()=>{
-      console.log(res)
-      getBarber();
-    }, []);
-    //*/
     return (
       <Container>
             
           <Title>BarberStyle</Title>
           <SubTitle>Buscar</SubTitle>
           <Button title="Abrir Menu"  onPress={ () => navigation.toggleDrawer() }/>
-        <Scroller >
-          <SearchArea>
+          <SearchArea RefreshControl={
+          <RefreshControl
+          refreshing={refreshing} onRefresh={onRefresh}
+      />
+        }>
             <SearchInput 
               placeholder="Buscar por seu barbeiro"
               placeholderTextColor="#FFFFFF" />
-            <SearchFinder /*onPress={handleSearchBarber}*/>
-              <Fontisto name="search" size={24} color="white" />
-            </SearchFinder>
-          </SearchArea>    
 
-          
+              
+            {/* <SignInput
+             placeholder = "Buscar por seu barbeiro"
+             value={idBarber}
+             onChangeText={t=>setIdBarber(t)}/>
+             <Button  onClick={()=> this.Rede()} />
+             
+             */}
+            
+          </SearchArea>
+            <Feather name="refresh-ccw" size={24} color="black" />
+        <Scroller >
+{/*<button onClick={() => this.handleClick()}>Clique em mim!</button>;*/}
+          {loading &&
             <LoadingIcon size="small" color="#FFF"/>
+          }
+            
+            <ListArea>
+              
+              <Rede />
 
-          <ListArea>
-            {list.map((item, k)=>(
-              <Barbeiro key={k} data={item} />
-            ))}
-          </ListArea>
-
+            </ListArea>
+       
         </Scroller>
       </Container>
     );

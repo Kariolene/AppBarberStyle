@@ -27,15 +27,15 @@ font-weight: bold;
 `;
 
 export const Scroller = styled.ScrollView`
-    flex: 1;
-    padding: 20px;
-    background-color: #0F0F0E;
-    Margin-horizontal: 20px;
+flex: 1;
+padding: 20px;
+background-color: #0F0F0E;
+Margin-horizontal: 20px;
+margin-top: 20px;
 `;
 
-
 export const SearchArea = styled.View`
-flex-direction: row;
+flex-direction: col;
 align-items: center;
 background-color: #0F0F0E;
 height: 60px;
@@ -49,6 +49,7 @@ border-color: white;
 padding-left: 20px;
 padding-right: 20px;
 margin-top: 10px;
+flex-direction: row;
 `;
 
 export const SearchInput = styled.TextInput`
@@ -60,10 +61,8 @@ color: #ffffff;
 export const SearchFinder = styled.TouchableOpacity`
 width: 24px;
 height: 24px;
+margin-bottom: 20px;
 `;
-
-
-
 
 export const LoadingIcon = styled.ActivityIndicator`
     margin-top: 50px;
