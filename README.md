@@ -24,6 +24,7 @@ Video da apresentação:
 https://www.youtube.com/watch?v=K6p4_6BfQVE
 
 Trello:
+![image](https://user-images.githubusercontent.com/38690364/116765666-9f09bb80-a9fc-11eb-8bb4-f8af25c7f390.png)
 
-![image](https://user-images.githubusercontent.com/38690364/116765565-36224380-a9fc-11eb-873d-6d5155042156.png)
+
 
