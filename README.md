@@ -1,12 +1,11 @@
-# Kariolene-AppBarberStyle
+#AppBarberStyle
 
  Os componentes das equipes juntamente com o login do github:
  
- Kariolene : Kariolene
- Leonardo  : leofraga93
- João Lima : joaolima951
- Demas     : demas88
-
+ Kariolene   : Kariolene
+ Leonardo    : leofraga93
+ Victor Rocha: victornasci
+ 
 Screens:
 
 Kariolene - Screen de cadastro do usuário e login/
@@ -16,9 +15,7 @@ Kariolene - Screen de cadastro do usuário e login/
 Leoanardo - Screen de Busca das barbearias/
           - Agendar /
           - 
-Demas     - Favoritos/
-
-João      - Home do usuário/
+Victor    - 
 
 Video da apresentação:
 https://www.youtube.com/watch?v=K6p4_6BfQVE
