@@ -9,13 +9,16 @@
 
 Screens:
 
-Kariolene - Screen de cadastro do usuário e login
-            Tela "meu perfil" do usuário.
-            Login e cadastro das barbearias
-Leoanardo - Screen de Busca das barbearias
-          - Agendar 
-Demas     - Favoritos
-João      - Home do usuário
+Kariolene - Screen de cadastro do usuário e login/
+            Tela "meu perfil" do usuário./
+            Login e cadastro das barbearias/
+            
+Leoanardo - Screen de Busca das barbearias/
+          - Agendar /
+          - 
+Demas     - Favoritos/
+
+João      - Home do usuário/
 
 Video da apresentação:
 https://www.youtube.com/watch?v=K6p4_6BfQVE
