@@ -4,7 +4,7 @@
  
  Kariolene   : Kariolene
  Leonardo    : leofraga93
- Victor Rocha: victornasci
+
  
 Screens:
 
@@ -14,8 +14,8 @@ Kariolene - Screen de cadastro do usuário e login/
             
 Leoanardo - Screen de Busca das barbearias/
           - Agendar /
-          - 
-Victor    - 
+          
+
 
 Video da apresentação:
 https://www.youtube.com/watch?v=K6p4_6BfQVE
