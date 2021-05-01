@@ -6,11 +6,11 @@ import {
     HeaderArea,
     SearchTitle,
     SearchButton
- } from './styles';
+ } from './style';
 
 import SearchIcon from '../../assets/search.svg';
 
-export default () => {
+export default function SearchBarber() {
     return(
         <Container>
             <Scroller>
