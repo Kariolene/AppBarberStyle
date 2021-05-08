@@ -41,11 +41,11 @@ export default function Buscar({navigation}) {
     const [refreshing, setRefreshing] = useState(false);
     
     
-    const getBarber = async ()=>{
+    const getBarbers = async ()=>{
       setLoading(true);
       setList([]);
 
-      let res = await Api.getBarber();
+      let res = await Api.getBarbers();
       if(res.error == ''){
         setList(res.data);
       }else{
@@ -56,6 +56,7 @@ export default function Buscar({navigation}) {
 
     const onRefresh = ()=>{
       setRefreshing(false);
+      getBarbers();
       getBarber();
     }
 

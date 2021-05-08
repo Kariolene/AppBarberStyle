@@ -157,9 +157,9 @@ signUpDelete: async (id) => {
 
 //Obter barbearia
 
-    getBarber: async({data})=>{
+    getBarbers: async({data})=>{
 
-        /*var link = '/appBarberStyle/barbearia/'+id;
+        var link = '/appBarberStyle/barbearia/'+id;
         var link2 = BASE_API+link;
 
         const req = await fetch(`${link2}`,{
@@ -172,7 +172,10 @@ signUpDelete: async (id) => {
         });
             const json = await req.json();
             return json;
-    */
+    },
+
+    getBarber: async({data})=>{
+
         const req =await fetch('https://607a5bfdbd56a60017ba29de.mockapi.io/api/appBarberStyle/barbearia')
         const json =await req.json();
         return json;
