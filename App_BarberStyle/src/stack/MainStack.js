@@ -25,8 +25,9 @@ export default function MainStack({navigation}) {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
 
-        <Stack.Screen name="SignIn"          component={SignIn} />
-        <Stack.Screen name="SignUp"          component={SignUp} />
+       {/* <Stack.Screen name="SignIn"          component={SignIn} />
+        <Stack.Screen name="SignUp"          component={SignUp} />*/}
+        
         <Stack.Screen name="HomeUser"        component={DrawerStack}/>
         <Stack.Screen name="PerfilUser"      component={PerfilUser}/>
         <Stack.Screen name="Agenda"          component={Agenda}/>

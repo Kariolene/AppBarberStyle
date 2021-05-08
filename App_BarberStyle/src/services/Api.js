@@ -26,6 +26,30 @@ export default {
             
         },
 
+
+//Victor
+//.......................................................
+
+
+getServicos: async ({data}) => {
+
+    var link = '/appBarberStyle/servicosBarbearia/';
+        var link2 = BASE_API+link;
+    
+        const reqServicos = await fetch(`${link2}`,{
+            method:'GET',
+            headers:{
+                Accept:'application/json',
+                'Content-Type': 'application/json'
+            },
+            });
+
+            const json = await req.json();
+            return json;
+        
+    },
+
+
 //........................................................
 //Obter usuário
 
