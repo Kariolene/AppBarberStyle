@@ -181,6 +181,13 @@ signUpDelete: async (id) => {
         return json;
     },
 
+    getBarberOnly: async(id)=>{
+        const req =await fetch(`https://607a5bfdbd56a60017ba29de.mockapi.io/api/appBarberStyle/barbearia/${id}`)
+        const json =await req.json();
+        console.log(json);
+        return json;
+    },
+
 
 //........................................................
 //Cadastrar barbearia

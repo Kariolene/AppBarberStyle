@@ -44,7 +44,7 @@ const SeeProfileButtonText = styled.Text`
 `;
 
 
-export default function(){
+export default function({data}){
 
 const [carregando, setCarregando]=useState(true)
 const [dados, setDados]= useState([])
@@ -59,8 +59,8 @@ useEffect( ()=>{
 )
     const navigation = useNavigation(); 
 
-    const handleClick = ({data})=>{
-        navigation.navigate('HomeBarbearia',{
+    const handleClick = ()=>{
+        navigation.navigate('Barbearia',{
             id: data.id,
             nameBarbearia: data.nameBarbearia,
             nameResponsavel: data.nameResponsavel,
@@ -78,9 +78,9 @@ useEffect( ()=>{
                         <InfoArea>
                             <BarberInfo>{item.nameResponsavel}, {item.email}</BarberInfo>
                         </InfoArea>
-                            <SeeProfileButton>
-                                <SeeProfileButtonText>Ver Perfil</SeeProfileButtonText>
-                            </SeeProfileButton>
+                        <SeeProfileButton>
+                            <SeeProfileButtonText>Ver Perfil</SeeProfileButtonText>
+                        </SeeProfileButton>
                     </Area>
                 )}
                 keyExtractor={item => item.id}

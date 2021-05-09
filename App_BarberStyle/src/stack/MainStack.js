@@ -10,11 +10,14 @@ import Favoritos from '../screens/Favoritos';
 import SearchBarber from '../screens/SearchBarber';
 import SignUpBarbearia from '../screens/SignUpBarbearia';
 import SignInBarbearia from '../screens/SignInBarbearia';
-import HomeBarbearia from '../screens/HomeBarbearia';
+import DrawerStackBarber from '../screens/HomeBarbearia';
 import PerfilBarbearia from '../screens/PerfilBarbearia';
 import Buscar from '../screens/Buscar';
+import MainTab from './MainTab';
 
-import DrawerStackBarber from '../stack/DrawerStackBarber';
+import Barbearia from '../screens/Barbearia';
+
+//import DrawerStackBarber from '../stack/DrawerStackBarber';
 
 
 
@@ -38,7 +41,9 @@ export default function MainStack({navigation}) {
         <Stack.Screen name="SignUpBarbearia" component={SignUpBarbearia} />
         <Stack.Screen name="HomeBarbearia"   component={DrawerStackBarber}/>
         <Stack.Screen name="PerfilBarbearia" component={PerfilBarbearia}/>
+        <Stack.Screen name="MainTab"         component={MainTab} /> 
 
+        <Stack.Screen name="Barbearia"       component={Barbearia} /> 
     </Stack.Navigator>
   );
 }

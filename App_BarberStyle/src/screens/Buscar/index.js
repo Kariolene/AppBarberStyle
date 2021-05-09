@@ -25,14 +25,6 @@ import {
   
 } from './style';
 
-function Item({ title }){
-  return(
-    <view style={style.item}>
-      <Text style={style.title}>{title}</Text>
-    </view>
-  );
-}
-
 export default function Buscar({navigation}) {
 //Buscar Barbeiros
 
