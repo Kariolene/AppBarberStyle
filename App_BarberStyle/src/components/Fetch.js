@@ -59,11 +59,12 @@ useEffect( ()=>{
 )
     const navigation = useNavigation(); 
 
-    const handleClick = ()=>{
+    const handleClick = ({data})=>{
         navigation.navigate('HomeBarbearia',{
             id: data.id,
             nameBarbearia: data.nameBarbearia,
-            nameResponsavel: data.nameResponsavel
+            nameResponsavel: data.nameResponsavel,
+            email: data.email
         });
     }
 

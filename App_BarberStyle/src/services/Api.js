@@ -168,7 +168,7 @@ signUpDelete: async (id) => {
                 Accept:'application/json',
                 'Content-Type': 'application/json'
             },
-           // body: JSON.stringify({email,name,password})
+            body: JSON.stringify({email,nameBarbearia,nameResponsavel, id})
         });
             const json = await req.json();
             return json;
