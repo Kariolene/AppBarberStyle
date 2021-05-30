@@ -8,8 +8,8 @@
  
 Screens:
 
-Kariolene - Screen de cadastro do usuário e login/
-            Tela "meu perfil" do usuário./
+Kariolene - Screen de cadastro e login do usuário/
+            Tela"Perfil" usuário e barbearias/
             Login e cadastro das barbearias/
             
 Leoanardo - Screen de Busca das barbearias/
