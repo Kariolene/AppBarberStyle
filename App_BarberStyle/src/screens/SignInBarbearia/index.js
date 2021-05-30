@@ -2,7 +2,7 @@ import  React , { useState, useContext }  from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, Alert } from 'react-native';
 import UserContext from '../../contexts/UserContext';
-import SignInput from  '../../components/SingInput';
+import SignInputBarber from  '../../components/SingInputBarber';
 import Api from '../../services/Api';
 
 import { 
@@ -20,7 +20,15 @@ import {
 
 export default function SignInBarbearia({navigation}){
 
-  const {stgNome, setStgNome, stgUserId, setStgUserId} = useContext(UserContext);
+  //KAS - API Context para barbearias - 
+  const {stgNomeBar,    setStgNomeBar,
+         stgBarId,      setStgBarId,
+         stgEmailBar,   setStgEmailBar,
+         stgPassBar,    setStgPassBar,
+         stgCelularBar, setStgCelularBar,
+         stgRespBar,    setStgRespBar,
+         stgcnpjBar,    setStgCnpjBar}  = useContext(UserContext);
+  
 
 //...........................................................................
 /*Hooks que permitem digitar e-mail/senha na tela ou alterar o que foi digitado*/
@@ -34,14 +42,21 @@ export default function SignInBarbearia({navigation}){
  
      if(id != '' && passwordField != ''){   
         
-      
         let json = await Api.signInBarber(id);
 
         if( json.id == id ){
           
-            if(json.password == passwordField ) {
+            if(json.passwordBarber == passwordField ) {
+     
+                 setStgBarId(json.id);
+                 setStgNomeBar(json.nameBarbearia);
+                 setStgRespBar(json.nameResponsavel);
+                 setStgCnpjBar(json.cnpj);
+                 setStgEmailBar(json.email);
+                 setStgPassBar(json.passwordBarber);
+                 setStgCelularBar(json.contatoBarbearia);
               
-                navigation.navigate('HomeBarbearia', {id: id});
+                navigation.navigate('HomeBarbearia');
                 
             }else{
               alert("Senha inválida.");
@@ -82,14 +97,14 @@ const handlerLinkUser = ()=>{
           <Title>BarberMob</Title>
        
           <InputArea>
-          <SignInput
+          <SignInputBarber
              placeholder = "Usuário da Barbearia"
              value={id}
              onChangeText={t=>setId(t)}>
-          </SignInput>
+          </SignInputBarber>
 
           {/* Input da senha personalizado*/} 
-          <SignInput
+          <SignInputBarber
              placeholder = "Senha"
              value={passwordField}
              onChangeText={t=>setPasswordField(t)}

@@ -192,7 +192,7 @@ export default function SignUpBarbeiro({navigation}) {
     },
 
     containerInput:{
-      placeholderTextColor:'#FFC82C',
+      placeholderTextColor:'#A6A583',
       borderColor: 'gray',
       borderWidth: 1,
       borderRadius: 30,

@@ -1,16 +1,22 @@
-import  React, {useContext, useEffect, useState} from 'react';
-import { View, Text, Button, StyleSheet, FlatList, SafeAreaView} from 'react-native';
+import  React, {useContext} from 'react';
+import { View, Text, Button, StyleSheet} from 'react-native';
 import { Container,  } from './style';
 import UserContext from '../../contexts/UserContext';
-import Api from '../../services/Api';
-import FlatlistServico from '../../components/FlatlistServico';
+
 
 
 
  export default function HomeBarbearia({navigation}) {
    
-  const {stgNome, setStgNome, stgUserId, setStgUserId} = useContext(UserContext);
-
+  const {stgNomeBar,   setStgNomeBar,
+        stgBarId,      setStgBarId,
+        stgEmailBar,   setStgEmailBar,
+        stgPassBar,    setStgPassBar,
+        stgCelularBar, setStgCelularBar,
+        stgRespBar,    setStgRespBar,
+        stgcnpjBar,    setStgCnpjBar}  = useContext(UserContext);
+   
+      
 
   return (
    <Container>
@@ -24,10 +30,7 @@ import FlatlistServico from '../../components/FlatlistServico';
         <Text style={style.subTitle}>HomeBarbearia</Text>
        </View>
 
-       {/*<SafeAreaView style={style.container}>
-        <FlatlistServico/>
-  </SafeAreaView>*/}
-
+         
     </Container>
   );
 }

@@ -6,7 +6,7 @@ export default {
     
 //........................................................
 // USUÁRIO
-//........................................................
+//........................................................KAS
 
 //  Cadastrar usuário
     signUp: async (name, email, celular,apelido, dataNascimento, password ) => {
@@ -26,11 +26,11 @@ export default {
             
         },
 
-//........................................................
+//........................................................KAS
 //Obter usuário
 
    getUser: async(id)=>{
-
+     
         var link = '/appBarberStyle/users/'+id;
        // var link = '/appBarberStyle/users?email=kas@gmail.com';
         var link2 = BASE_API+link;
@@ -41,18 +41,16 @@ export default {
                    Accept:'application/json',
                    'Content-Type': 'application/json'
                },
-               //body: JSON.stringify({email,password})
          });
             const json = await req.json();
             return json;
+ 
     },
 
-    
-
-//........................................................
+//........................................................KAS
 //Atualizar cadastro 
 
-    signUpAtualize: async (id,name, email, celular,apelido, password, dataNascimento) => {
+    signUpAtualize: async (id,name, email, celular,apelido,dataNascimento,password) => {
         
         var link = '/appBarberStyle/users/'+id;
         var link2 = BASE_API+link;
@@ -63,14 +61,14 @@ export default {
                 Accept:'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({name, email, celular,apelido, password, dataNascimento})});
+            body: JSON.stringify({name, email, celular,apelido,dataNascimento, password})});
 
          const json = await req.json();
          return json;
 
     },
 
-//........................................................
+//........................................................KAS
 //Deletar cadastro de usuario
 signUpDelete: async (id) => {
 
@@ -88,78 +86,27 @@ signUpDelete: async (id) => {
      return json;
 },
 
-//........................................................
-/*Cadastrar autenticação */
-//POST
-  /*  signIn: async (email,password, tokenAutentc) => {
-    
-            var link = '/appBarberStyle/auten/';
-            var link2 = BASE_API+link;
-
-            const req = await fetch(`${link2}`,{
-                method: 'POST',
-                headers: {
-                    Accept:'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({email,password,tokenAutentc}) });
-
-                const json = await req.json();
-                return json;
-
-    },*/
-
-//........................................................
-//Atualizar autenticação
-
-   /* signInAtualize: async (id,email,password) => {
-
-        var link = '/appBarberStyle/auten/'+id;
-        var link2 = BASE_API+link;
-
-        const req = await fetch(`${link2}`,{
-            method: 'PUT',
-            headers:{
-                Accept:'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({email,password})});
-
-         const json = await req.json();
-         return json;
-
-    },*/
-    
-//........................................................
-//Deletar autenticação de usuario
-  /*  signInDelete: async (id) => {
-
-        var link = '/appBarberStyle/auten/'+id;
-        var link2 = BASE_API+link;
-
-        const req = await fetch(`${link2}`,{
-            method: 'DELETE',
-            headers:{
-                Accept:'application/json',
-                'Content-Type': 'application/json'
-            },
-        });
-
-         const json = await req.json();
-         return json;
-
-    },*/
 
 
 //........................................................
 // BARBEARIA
-//........................................................
+//........................................................LEO
 
 //Obter barbearia
 
     getBarber: async({data})=>{
 
-        /*var link = '/appBarberStyle/barbearia/'+id;
+        const req =await fetch('https://607a5bfdbd56a60017ba29de.mockapi.io/api/appBarberStyle/barbearia')
+        const json =await req.json();
+        return json;
+    },
+
+//........................................................KAS
+//Login da barbearia
+
+    signInBarber: async (id) => {
+
+        var link = '/appBarberStyle/barbearia/'+id;
         var link2 = BASE_API+link;
 
         const req = await fetch(`${link2}`,{
@@ -168,18 +115,11 @@ signUpDelete: async (id) => {
                 Accept:'application/json',
                 'Content-Type': 'application/json'
             },
-           // body: JSON.stringify({email,name,password})
         });
             const json = await req.json();
             return json;
-    */
-        const req =await fetch('https://607a5bfdbd56a60017ba29de.mockapi.io/api/appBarberStyle/barbearia')
-        const json =await req.json();
-        return json;
     },
-
-
-//........................................................
+//........................................................KAS
 //Cadastrar barbearia
 
     signUpBarber: async (   nameBarbearia,
@@ -211,18 +151,19 @@ signUpDelete: async (id) => {
             
         },
 
-//........................................................
+//........................................................KAS
 //Atualizar barbearia
 
-    signUpBarberAtualizar: async (  nameBarbearia,
-                                    nameResponsavel,
-                                    contatoBarbearia, 
-                                    email,
-                                    passwordBarber,
-                                    cnpj
-                                    ) => {
+    BarberAtualizar: async (  id,
+                            nameBarbearia,
+                            nameResponsavel,
+                            contatoBarbearia, 
+                            email,
+                            passwordBarber,
+                            cnpj
+                            ) => {
 
-        var link = '/appBarberStyle/barbearia/';
+        var link = '/appBarberStyle/barbearia/'+id;
             var link2 = BASE_API+link;
         
             const req = await fetch(`${link2}`,{
@@ -232,6 +173,7 @@ signUpDelete: async (id) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
+                            id,
                             nameBarbearia,
                             nameResponsavel,
                             contatoBarbearia, 
@@ -243,23 +185,8 @@ signUpDelete: async (id) => {
             
         },
 
-        signInBarber: async (id) => {
 
-                var link = '/appBarberStyle/barbearia/'+id;
-                var link2 = BASE_API+link;
-        
-                const req = await fetch(`${link2}`,{
-                    method: 'GET',
-                    headers: {
-                        Accept:'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                   // body: JSON.stringify({email,name,password})
-                });
-                    const json = await req.json();
-                    return json;
-            },
-//........................................................
+//........................................................KAS
 //Deletar  barbearia
     deleteBarber: async(id)=>{
 
@@ -272,17 +199,17 @@ signUpDelete: async (id) => {
                 Accept:'application/json',
                 'Content-Type': 'application/json'
             },
-        // body: JSON.stringify({email,name,password})
         });
             const json = await req.json();
             return json;
     },
 
+//..........................................................
 //Obter barbearia
 
     getBarberAll: async()=>{
 
-        var link = '/appBarberStyle/barbearia/1';
+        var link = '/appBarberStyle/barbearia/';
         var link2 = BASE_API+link;
 
         const req = await fetch(`${link2}`,{
@@ -291,15 +218,16 @@ signUpDelete: async (id) => {
                 Accept:'application/json',
                 'Content-Type': 'application/json'
             },
-           // body: JSON.stringify({email,name,password})
         });
             const json = await req.json();
             return JSON.stringify(json);
     },
+
+
 //........................................................
 // Serviços da barbearia
 //........................................................
 
 
 
-};
+};//end export default

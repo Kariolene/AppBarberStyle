@@ -11,7 +11,7 @@ import SearchBarber from '../screens/SearchBarber';
 import SignUpBarbearia from '../screens/SignUpBarbearia';
 import SignInBarbearia from '../screens/SignInBarbearia';
 import HomeBarbearia from '../screens/HomeBarbearia';
-import PerfilBarbearia from '../screens/PerfilBarbearia';
+import PerfilBarbearia from '../screens/PerfilBarbearia/index';
 import Buscar from '../screens/Buscar';
 
 import DrawerStackBarber from '../stack/DrawerStackBarber';

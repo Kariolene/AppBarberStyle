@@ -1,9 +1,8 @@
 import React, { useState, useContext }  from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text,StatusBar, Button, StyleSheet,SafeAreaView, ScrollView, TextInput } from 'react-native';
 import Dialog, { DialogFooter, DialogButton, DialogContent, DialogActions }  from 'react-native-popup-dialog';
-import {useNavigation} from "@react-navigation/native";
-import Api from '../../services/Api';
 import UserContext from '../../contexts/UserContext';
+import Api from '../../services/Api';
 import { 
   Container ,
   CustomButtonText,
@@ -12,184 +11,240 @@ import {
   SingButtonArea
 } from './style';
 
-
 export default function PerfilBarbearia({navigation}) {
 
-
-//...........................................................................
-/*Definição de valores transferidos entre screens*/
-
-//const {stgUserId } = useContext(UserContext);
-
-//...........................................................................
-/*Hooks que permitem digitar campos da tela*/
-
-  const [nameField,     setNameField]     = useState(name);//Exibir com valores cadastrados
-  const [emailField,    setEmailField]    = useState(email);
-  const [passwordField, setPasswordField] = useState(password);
-
-
+//KAS - API Context para barbearias - 
+  const {stgNomeBar,   setStgNomeBar,
+        stgBarId,      setStgBarId,
+        stgEmailBar,   setStgEmailBar,
+        stgPassBar,    setStgPassBar,
+        stgCelularBar, setStgCelularBar,
+        stgRespBar,    setStgRespBar,
+        stgcnpjBar,    setStgCnpjBar}  = useContext(UserContext);
+  //.............................................................................
+  /*Hooks que permitem digitar campos da tela*/
+ 
+  const [nameBarber, setNameBaber]          = useState(stgNomeBar);
+  const [emailBarber, setEmailBarber]       = useState(stgEmailBar);
+  const [passwordBarber, setPasswordBarber] = useState(stgPassBar);
+  const [passwordConf, setPasswordConf]     = useState('');
+  const [nomeResp, setNomeResp]             = useState(stgRespBar);
+  const [celularField, setCelular]          = useState(stgCelularBar);
+  const [cnpj, setCnpj]                     = useState(stgcnpjBar);
+  
 //...........................................................................
 // Ação do botão atualizar perfil
 
-  const handlerButtonAtualizar = async () =>{
+const handlerButtonAtualizar = async () =>{
 
-    if(emailField != '' && nameField != '' && passwordField != '' ){
+  if(emailBarber != '' && nameBarber != '' && passwordBarber != '' ){
 
-      /*atualizar na tebela de usuários*/
-      let req = await Api.signUpAtualize(id,emailField, nameField, passwordField);
+     if(passwordBarber == passwordConf){
 
-      if(req.id == id){
+    /*atualizar na tebela de usuários*/
+    let req = await Api.BarberAtualizar(  stgBarId,
+                                          nameBarber,
+                                          nomeResp,
+                                          celularField,
+                                          emailBarber,
+                                          passwordBarber,
+                                          cnpj);
 
-         alert("Atualizado com sucesso!");
+    if(req.id == stgBarId){
 
-        //Atualizar na tabela de autenticação
-        let req2 = await Api.signInAtualize(id,emailField, passwordField);
-      
-      } else {
-        alert("Verifique os dados no seu cadastro");
-       }
-
+       alert("Atualizado com sucesso!");
+    
     } else {
-    alert("Favor preencher todos os campos para concluir a atualização.");
-    }
+      alert("Verifique os dados no seu cadastro");
+     }
+  }else {
+    alert("Senhas divergentes");
+  }
+} else {
+alert("Favor preencher todos os campos para concluir a atualização.");
+}
 
-  };
+};
 
 //...........................................................................
 // Ação do botão deletar perfil -> exibição do pop up 
-  const [popupExibir, setPopupExibir] = useState(false); 
+const [popupExibir, setPopupExibir] = useState(false); 
+
+const showDialog = () => setPopupExibir(true);
+const hideDialog = () => setPopupExibir(false);
+
+const dialogOk  = async () => {
   
-  const showDialog = () => setPopupExibir(true);
-  const hideDialog = () => setPopupExibir(false);
+  setPopupExibir(false);
 
-  const dialogOk  = async () => {
-    
-    setPopupExibir(false);
-  
-    /*atualizar na tebela de usuários*/
-    let req = await Api.signUpDelete(id);
+  /*atualizar na tebela de usuários*/
+  let req = await Api.deleteBarber(stgBarId);
 
-    if(req.id == id){
+  if(req.id == stgBarId){
 
-      alert("Conta deletada.");
+    alert("Conta deletada.");
 
-      //Atualizar na tabela de autenticação
-      let req2 = await Api.signInDelete(id);
-        
-      //Voltar para tela de login
-      navigation.reset({ routes: [{name: 'SignInBabearia'}]});
+    //Voltar para tela de login
+    navigation.reset({ routes: [{name: 'SignInBarbearia'}]});
 
-    } else {
-      alert("Algo deu errado");
-    }
+  } else {
+    alert("Algo deu errado");
   }
+}
 
 //...........................................................................
 
     return (
-
+   
+  
       <Container>
+        <ScrollView>
+
+         <View style={style.subContainer}>
+
+         <View style={ style.contButtomHome}>
+         <Button title="Menu" onPress={() => navigation.toggleDrawer()} />
+         </View>
 
          <Text style={style.title}>BarberStyle</Text>
-         <Text style={style.subTitle}>Perfil da Barbearia</Text>
-        
-         {/*Container com inputs do perfil*/}
-        <View style={style.subContainer}>
-        
+         <Text style={style.subTitle}>Cadastro de Barbearia</Text>
+          
+         <View style={{alignContent:'flex-start'}}>
+         <Text style={style.textInput}>*Nome da Barbearia:</Text>
           <TextInput
-          placeholder={'Nome '}
+          placeholder={' * Nome da Barbearia '}
           style={style.containerInput}
           keyboardType={'default'}
-          value={nameField}
-          onChangeText={t=>setNameField(t)}
-          /> 
+          value={nameBarber}
+          onChangeText={t=>setNameBaber(t)}/> 
 
+         <Text style={style.textInput}>*E-mail:</Text>
           <TextInput
-          placeholder={'name@example.com'}
+          placeholder={' * E-mail'}
           style={style.containerInput}
           keyboardType={'email-address'}
-          value={emailField}
-          onChangeText={t=>setEmailField(t)}
-          />
+          value={emailBarber}
+          onChangeText={t=>setEmailBarber(t)}/>
 
+         <Text style={style.textInput}>Contato:</Text>
           <TextInput
-          placeholder={'Senha'}
+          placeholder={'Telefone de contato'}
           style={style.containerInput}
-          secureTextEntry={true}
-          value={passwordField}
-          onChangeText={t=>setPasswordField(t)}
-          />
+          keyboardType={'default'}
+          value={celularField}
+          onChangeText={t=>setCelular(t)}/> 
 
-        </View>
+          <Text style={style.textInput}>*CNPJ:</Text>
+          <TextInput
+          placeholder={' * CNPJ da Barbearia'}
+          style={style.containerInput}
+          keyboardType={'default'}
+          value={cnpj}
+          onChangeText={t=>setCnpj(t)}/> 
 
-        <CustomButton onPress={handlerButtonAtualizar}>
+          <Text style={style.textInput}>Nome do Responsavel:</Text>
+          <TextInput
+          placeholder={'Nome do Responsável'}
+          style={style.containerInput}
+          keyboardType={'default'}
+          value={nomeResp}
+          onChangeText={t=>setNomeResp(t)}/> 
+
+          <Text style={style.textInput}>* Trocar Senha:</Text>
+          <TextInput
+          placeholder={'* Nova senha'}
+          style={style.containerInput}
+          value={passwordBarber}
+          onChangeText={t=>setPasswordBarber(t)}/>
+
+          <Text style={style.textInput}>*Confirmar senha:</Text>
+          <TextInput
+          placeholder={'* Confirme a senha'}
+          style={style.containerInput}
+          onChangeText={t=>setPasswordConf(t)}/>
+          </View>
+        
+          <CustomButton onPress={handlerButtonAtualizar}>
           <CustomButtonText>Atualizar</CustomButtonText>
-        </CustomButton>
-
-        <SingButtonArea onPress={ () => navigation.navigate('SignIn') }>
-        <SingButtonTextBold>Fazer Login</SingButtonTextBold>
+          </CustomButton>
+        
+          <SingButtonArea onPress={showDialog}>
+          <SingButtonTextBold>Deletar conta</SingButtonTextBold>
+          <Dialog
+            title="Deletar conta"
+            visible={popupExibir}
+            footer={
+              <DialogFooter>
+                <DialogButton
+                  text="CANCEL"
+                  onPress={hideDialog}
+                />
+                <DialogButton
+                  text="OK"
+                  onPress={dialogOk}
+                />
+              </DialogFooter>
+            }>
+            <DialogContent> Confirmar exclusão de conta?</DialogContent>
+          </Dialog>
         </SingButtonArea>
         
-        <SingButtonArea onPress={showDialog}>
-        <SingButtonTextBold>Deletar conta</SingButtonTextBold>
-        <Dialog
-          title="Deletar conta"
-          visible={popupExibir}
-          footer={
-            <DialogFooter>
-              <DialogButton
-                text="CANCEL"
-                onPress={hideDialog}
-              />
-              <DialogButton
-                text="OK"
-                onPress={dialogOk}
-              />
-            </DialogFooter>
-          }>
-          <DialogContent> Confirmar exclusão de conta?</DialogContent>
-        </Dialog>
-       </SingButtonArea>
-      </Container>
+        </View>
+        </ScrollView>
+        </Container>
+      
     );}
   
 
   const style = StyleSheet.create({
 
-    /*Style titulo da screen*/
+    scrollView: {
+      marginHorizontal:1,
+    },
+
+    /*Style para o titulo da screen*/
     title:{
-      marginTop:60,
+     // marginTop:20,
       color: '#FFC82C',
       fontFamily: 'Serif',
       fontSize: 45,
       padding: 20,
     },
 
-    /*Style subtitulo da screen*/
+    textInput:{
+      marginTop: 15,
+       color:'#FFC82C',
+     },
+
+    /*Style para o subtitulo da screen*/
     subTitle:{
       color: '#FFC82C',
       fontFamily: 'Serif',
       fontSize: 25,
+      //fontWeight: 'bold',
+      alignItems:'center', 
+      justifyContent:'center',
     },
 
     subContainer:{
       alignItems:'center', 
       justifyContent:'center',
-      padding: 10,
+      paddingHorizontal: 45,
+      margin:50,
     },
 
     containerInput:{
-      placeholderTextColor:'#FFC82C',
+      placeholderTextColor:'#A6A583',
       borderColor: 'gray',
       borderWidth: 1,
       borderRadius: 30,
       justifyContent: 'center',
       alignItems: 'center',
       width: 260,
-      padding: 15,
+      padding: 10,
       margin: 5,
       color:'#FFC82C',
+      //fontWeight: 'bold',
     },
 
     buttonSalvar:{
@@ -202,6 +257,19 @@ export default function PerfilBarbearia({navigation}) {
       fontFamily: 'sans-serif',
       fontSize: 16,
       marginLeft: 5,
-    }
+    },
+   container:{
+    backgroundColor: '#0F0F0E',
+    opacity: 80,
+    flex: 1,
+    alignItems: 'center',
+    },
+
+    contButtomHome:{
+      padding:10,
+      alignItems:'flex-end',
+      justifyContent:"flex-end",
+    },
+  
 
   });
