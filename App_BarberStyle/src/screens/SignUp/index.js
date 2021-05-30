@@ -55,7 +55,13 @@ export default function SignUp({navigation}) {
       if (passwordConf == passwordField) {
         
         /*inserir na tebela de usuários*/
-        let req = await Api.signUp(nameField, emailField, celularField, apelidoField, dataNasc,passwordField);
+        let req = await Api.signUp(
+          nameField, 
+          emailField, 
+          celularField, 
+          apelidoField, 
+          dataNasc,
+          passwordField);
         
         if(req.id != ' '){
                      
@@ -71,16 +77,9 @@ export default function SignUp({navigation}) {
           setStgApelido(apelidoField);
           setStgDataNasc(dataNasc);
 
-          //Navergar para screen do perfil
-          navigation.navigate('PerfilUser');
-         /* navigation.navigate('PerfilUser',{ 
-            id:        req.id, 
-            name:      nameField, 
-            email:     emailField, 
-            celular:   celularField,
-            apelido:   apelidoField,
-            dataNascimento:  dataNasc,
-            password: passwordField});*/
+          //Fazer login
+          navigation.navigate('SignIn');
+
         
       } else {
         //alert("Verifique os dados no seu cadastro");

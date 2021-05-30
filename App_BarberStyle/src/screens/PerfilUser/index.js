@@ -1,5 +1,5 @@
 import React, { useState, useContext }  from 'react';
-import { View, Text, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TextInput, ScrollView, Button } from 'react-native';
 import Dialog, { DialogFooter, DialogButton, DialogContent, DialogActions, DialogTitle } from 'react-native-popup-dialog';
 import UserContext from '../../contexts/UserContext';
 import {useNavigation} from "@react-navigation/native";
@@ -20,7 +20,6 @@ export default function PerfilUser({navigation}) {
 //...........................................................................
 /*Definição de valores transferidos entre screens*/
 
-  //const { id,name, email, celular, apelido, dataNascimento , password } = route.params;
   const { 
     stgNome,     setStgNome,
     stgUserId,   setStgUserId,
@@ -32,19 +31,10 @@ export default function PerfilUser({navigation}) {
 //...........................................................................
 /*Hooks que permitem digitar campos da tela*/
  
-  /*const [nameField,     setNameField]     = useState(name);
-  const [emailField,    setEmailField]    = useState(email);
-  const [passwordField, setPasswordField] = useState(password);
-  const [celularField,  setCelularField]  = useState(celular);
-  const [apelidoField,  setApelidoField]  = useState(apelido);
-  const [dataNasc ,     setDataNasc ]     = useState(dataNascimento);*/
-
-
-  
-
   const [nameField,     setNameField]     = useState(stgNome);
   const [emailField,    setEmailField]    = useState(stgEmail);
   const [passwordField, setPasswordField] = useState(stgPassword);
+  const [passwordConf,  setPasswordConf]  = useState('');
   const [celularField,  setCelularField]  = useState(stgCelular);
   const [apelidoField,  setApelidoField]  = useState(stgApelido);
   const [dataNasc ,     setDataNasc ]     = useState(stgDataNasc);
@@ -68,9 +58,18 @@ export default function PerfilUser({navigation}) {
 const handlerButtonAtualizar = async () =>{
   
   if(emailField != '' && nameField != ''){
+       if(passwordField == passwordConf){
 
       /*atualizar na tebela de usuários*/
-      let req = await Api.signUpAtualize(stgUserId,nameField, emailField, celularField, apelidoField, dataNasc);
+      let req = await Api.signUpAtualize(
+                          stgUserId,
+                          nameField, 
+                          emailField, 
+                          celularField, 
+                          apelidoField, 
+                          dataNasc,
+                          passwordField);
+
         if(req.id == stgUserId){
 
           setAtualizar(true);
@@ -78,7 +77,9 @@ const handlerButtonAtualizar = async () =>{
         } else {
           alert("Verifique os dados no seu cadastro");
         }
-
+      }else{
+        alert("Senhas diferentes");
+      }
   } else {
 
   setConcluirDados(true);
@@ -114,6 +115,10 @@ const handlerButtonAtualizar = async () =>{
        <ScrollView>
        
          <View style={style.subContainer}>
+
+         <View style={ style.contButtomHome}>
+         <Button title="Menu" onPress={() => navigation.toggleDrawer()} />
+         </View>
 
          <Text style={style.title}>BarberStyle</Text>
          <Text style={style.subTitle}>Perfil do Usuário</Text>
@@ -161,8 +166,21 @@ const handlerButtonAtualizar = async () =>{
           style={style.containerInput}
           keyboardType={'default'}
           value={celularField}
-          onChangeText={t=>setCelularField(t)}
-          /> 
+          onChangeText={t=>setCelularField(t)}/>
+
+          <Text style={style.textInput}>* Trocar Senha:</Text>
+          <TextInput
+          placeholder={'* Nova senha'}
+          style={style.containerInput}
+          value={passwordField}
+          onChangeText={t=>setPasswordBarber(t)}/>
+
+          <Text style={style.textInput}>*Confirmar senha:</Text>
+          <TextInput
+          placeholder={'* Confirme a senha'}
+          style={style.containerInput}
+          onChangeText={t=>setPasswordConf(t)}/>
+
           </View>
 
         <CustomButton onPress={handlerButtonAtualizar}>
@@ -173,9 +191,6 @@ const handlerButtonAtualizar = async () =>{
         <SingButtonTextBold>Formas de pagamento</SingButtonTextBold>
         </SingButtonArea>
 
-        <SingButtonArea onPress={ () => navigation.navigate('SignIn') }>
-        <SingButtonTextBold>Fazer Login</SingButtonTextBold>
-        </SingButtonArea>
    
         <SingButtonArea onPress={showDialog}>
         <SingButtonTextBold>Deletar conta</SingButtonTextBold>

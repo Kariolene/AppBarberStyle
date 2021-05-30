@@ -1,4 +1,5 @@
-import  React , { useState, useContext }  from 'react';
+
+import  React , { useState, useContext, fatch }  from 'react';
 import SignInput from  '../../components/SingInput';
 import UserContext from '../../contexts/UserContext';
 import Api from '../../services/Api';
@@ -28,22 +29,29 @@ export default function SignIn({navigation}){
 //...........................................................................
 /*Hooks que permitem digitar e-mail/senha na tela ou alterar o que foi digitado*/
 
-  const [id,            setId]            = useState('1');
-  const [passwordField, setPasswordField] = useState('123');
-  
+  const [id,            setId]            = useState('');
+  const [passwordField, setPasswordField] = useState('');
+  const [email, setEmail] = useState('');
 //...........................................................................
 /*Ação do botão de login do usuário*/
   const handlerButtonLoginClick = async () =>{
  
-     if(id != '' && passwordField != ''){   
+     if( id != '' && passwordField != ''){   
 
         let json = await Api.getUser(id);
 
         if( json.id == id ){
           
             if(json.password == passwordField ) {
-                
-                setStgUserId(id);
+                //Preenchimento do context api
+                setStgUserId(json.id);
+                setStgNome(json.name);
+                setStgEmail(json.email);
+                setStgCelular(json.celular);
+                setStgApelido(json.apelido);
+                setStgDataNasc(json.dataNascimento);
+                setStgPassword(json.password);
+
                 navigation.reset({routes: [{name: 'HomeUser'}]});
                 
             }else{

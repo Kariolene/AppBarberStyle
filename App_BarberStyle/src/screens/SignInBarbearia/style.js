@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 //........................................
 /*Container personalizado com fundo padão do app */
 export const Container = styled.SafeAreaView`
-background-color: #0F0F0E;
+background-color: #A6A583;
 opacity: 80%;
 flex: 1;
 align-items: center;
@@ -15,7 +15,8 @@ justify-content: center;
 //........................................
 /*Nome da barbearia*/
 export const Title = styled.Text`
-color: #FFC82C;
+//color: #FFC82C;
+color: #0F0F0E ;
 font-family: Serif;
 font-size: 45px;
 `;
@@ -33,7 +34,7 @@ width: 80%;
 //........................................
 /*Bootão personalizado */
 export const CustomButton = styled.TouchableOpacity` 
-background-color:#FFC82C;
+background-color:#0F0F0E;
 height: 40px;
 width: 150px;
 border-radius: 30px;
@@ -46,7 +47,7 @@ margin: 30px;
 /*Texto: Login do botão personalizado da tela de logon */
 export const CustomButtonText = styled.Text`
 font-size: 18px;
-color:#0F0F0E;
+color:#FFC82C;
 font-weight: bold;
 `;
 
@@ -62,7 +63,8 @@ margin-top: 30px;
 /*Texto link para a tela de cadastro */
 export const SingButtonTextBold = styled.Text` 
 text-decoration: none;
-color: #A6A583;
+//color: #A6A583;
+color: #0F0F0E;
 font-family: sans-serif;
 font-size: 16px;
 font-weight: bold;

@@ -18,12 +18,12 @@ import {
   
   return (
     <Container >
+        <View style={style.subContainer}>
+        <Button title="Menu" onPress={() => navigation.toggleDrawer()} />
+        </View>
          <Text style={style.title}>BarberStyle</Text>
          <Text style={style.subTitle}>Home</Text>
-          <row>
-            <Button title="Logout" onPress={ () => navigation.navigate('SignIn') }/>
-            <Button title="Menu" onPress={() => navigation.toggleDrawer()} />
-          </row>
+        
     </Container>
   );
 }
@@ -49,7 +49,11 @@ const style = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
   },
-
+  subContainer:{
+    alignItems:'center', 
+    justifyContent:'center',
+    padding: 30,
+  },
 });
 
   
