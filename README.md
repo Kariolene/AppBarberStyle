@@ -2,11 +2,6 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<title>
-		Os componentes das equipes juntamente com o login do github:
-	</title>
-</head>
 <body>
 <div>
   <h3>Login GitHub:</h3>
@@ -16,24 +11,24 @@
 </div>
 
 <div>
-  <h3>Telas e seus responsáveis</h3>
-  <ol>
-    <li>Kariolene</li>
+  <h3>Telas e seus responsáveis:</h3>
+	<h5>Kariolene:</h5>
+  <ul>
     <li>Login Usuário</li>
     <li>Login Barbearia</li>
     <li>Cadastro Barbearia</li>
     <li>Cadastro Usuário</li>
     <li>Perfil Barbearia</li>
     <li>Perfil Usuário</li>
-  </ol>
-  <ol>
-	<li>Leonardo</li>
+  </ul>
+	<h5>Leonardo:</h5>
+  <ul>
 	<li>Falta preencher</li>
-  </ol>
-  <ol>
-	<li>Victor</li>
+  </ul>
+	<h5>Victor:</h5>
+  <ul>
 	<li>Falta preencher</li>
-  </ol>
+  </ul>
 </div>
 <div>
 	<h5>Video da apresentação:<h5>
