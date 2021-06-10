@@ -17,7 +17,7 @@ import {
 
 export default function SignIn({navigation}){
 
-
+//KAS - API Context 
   const { stgNome,     setStgNome,
           stgUserId,   setStgUserId,
           stgEmail,    setStgEmail,
@@ -29,7 +29,7 @@ export default function SignIn({navigation}){
 //...........................................................................
 /*Hooks que permitem digitar e-mail/senha na tela ou alterar o que foi digitado*/
 
-  const [id,            setId]            = useState('');
+  const [id, setId] = useState('');
   const [passwordField, setPasswordField] = useState('');
   const [email, setEmail] = useState('');
 //...........................................................................
@@ -37,11 +37,12 @@ export default function SignIn({navigation}){
   const handlerButtonLoginClick = async () =>{
  
      if( id != '' && passwordField != ''){   
-
-        let json = await Api.getUser(id);
-
-        if( json.id == id ){
-          
+     // if( email != '' && passwordField != ''){  
+      let json = await Api.getUser(id);
+         //let json = await Api.getUser2(email);
+       if( json.id == id ){
+        
+         // if( json.email == email ){
             if(json.password == passwordField ) {
                 //Preenchimento do context api
                 setStgUserId(json.id);
@@ -97,7 +98,13 @@ const handlerLinkBabearias = ()=>{
              placeholder = "Usuário"
              value={id}
              onChangeText={t=>setId(t)}>
-          </SignInput>
+          </SignInput> 
+
+          {/*<SignInput
+             placeholder = "Usuário"
+             value={email}
+             onChangeText={t=>setEmail(t)}>
+          </SignInput>  */}
 
           {/* Input da senha personalizado*/} 
           <SignInput

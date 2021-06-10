@@ -56,7 +56,7 @@ const style = StyleSheet.create({
   },
 
   contButtomHome:{
-    padding:10,
+    padding:30,
     alignItems:'flex-end',
     justifyContent:"flex-end",
   },

@@ -100,12 +100,11 @@ const dialogOk  = async () => {
       <Container>
         <ScrollView>
 
-         <View style={style.subContainer}>
-
          <View style={ style.contButtomHome}>
          <Button title="Menu" onPress={() => navigation.toggleDrawer()} />
          </View>
 
+         <View style={style.subContainer}>
          <Text style={style.title}>BarberStyle</Text>
          <Text style={style.subTitle}>Cadastro de Barbearia</Text>
           
@@ -208,7 +207,7 @@ const dialogOk  = async () => {
       color: '#FFC82C',
       fontFamily: 'Serif',
       fontSize: 45,
-      padding: 20,
+      padding: 5,
     },
 
     textInput:{
@@ -229,8 +228,7 @@ const dialogOk  = async () => {
     subContainer:{
       alignItems:'center', 
       justifyContent:'center',
-      paddingHorizontal: 45,
-      margin:50,
+      padding: 30,
     },
 
     containerInput:{
@@ -258,6 +256,7 @@ const dialogOk  = async () => {
       fontSize: 16,
       marginLeft: 5,
     },
+
    container:{
     backgroundColor: '#0F0F0E',
     opacity: 80,
@@ -266,9 +265,8 @@ const dialogOk  = async () => {
     },
 
     contButtomHome:{
-      padding:10,
-      alignItems:'flex-end',
-      justifyContent:"flex-end",
+      padding: 30,
+      alignItems: 'flex-end',
     },
   
 

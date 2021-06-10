@@ -114,16 +114,16 @@ const handlerButtonAtualizar = async () =>{
       <Container>
        <ScrollView>
        
-         <View style={style.subContainer}>
 
          <View style={ style.contButtomHome}>
          <Button title="Menu" onPress={() => navigation.toggleDrawer()} />
          </View>
 
+         <View style={style.subContainer}>
          <Text style={style.title}>BarberStyle</Text>
          <Text style={style.subTitle}>Perfil do Usuário</Text>
       
-         <View style={{alignContent:'flex-start'}}>
+         <View style={{alignContent:'center'}}>
          <Text style={style.textInput}>*Nome completo:</Text>
           <TextInput
           placeholder={'* Nome completo'}
@@ -309,5 +309,8 @@ const handlerButtonAtualizar = async () =>{
       marginTop: 15,
        color:'#FFC82C',
      },
-
+     contButtomHome:{
+      padding: 30,
+      alignItems: 'flex-end',
+     }
   });
