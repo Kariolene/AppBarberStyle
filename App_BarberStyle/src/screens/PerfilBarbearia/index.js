@@ -37,7 +37,7 @@ export default function PerfilBarbearia({navigation}) {
 
 const handlerButtonAtualizar = async () =>{
 
-  if(emailBarber != '' && nameBarber != '' && passwordBarber != '' ){
+  if(emailBarber != '' && nameBarber != '' && passwordBarber != '' && cnpj != ''){
 
      if(passwordBarber == passwordConf){
 
@@ -61,7 +61,7 @@ const handlerButtonAtualizar = async () =>{
     alert("Senhas divergentes");
   }
 } else {
-alert("Favor preencher todos os campos para concluir a atualização.");
+alert("Favor preencher todos os campos com '*'.");
 }
 
 };
