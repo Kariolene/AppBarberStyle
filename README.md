@@ -35,10 +35,9 @@
 </body>
 </html>
 
-
-
-Trello:
-![image](https://user-images.githubusercontent.com/38690364/116765666-9f09bb80-a9fc-11eb-8bb4-f8af25c7f390.png)
+Professor por favor se não conseguir abrir o link ou algo, me avisa por esses contatos, muito obrigada!
+Contato: 71993056203 zap
+	karyolene@gmail.com
 
 
 
