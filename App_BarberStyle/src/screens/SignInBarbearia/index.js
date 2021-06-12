@@ -63,7 +63,7 @@ export default function SignInBarbearia({navigation}){
             }
         
         } else {
-          alert("Usuário não cadastrado ou e-mail inválido.");
+          alert("Usuário não cadastrado.");
         }
  
      } else {

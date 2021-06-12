@@ -173,7 +173,7 @@ const handlerButtonAtualizar = async () =>{
           placeholder={'* Nova senha'}
           style={style.containerInput}
           value={passwordField}
-          onChangeText={t=>setPasswordBarber(t)}/>
+          onChangeText={t=>setPasswordField(t)}/>
 
           <Text style={style.textInput}>*Confirmar senha:</Text>
           <TextInput
