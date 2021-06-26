@@ -33,9 +33,7 @@
 	<p>https://youtu.be/GdJcDNsArbg</p>
 		<p>https://607a5bfdbd56a60017ba29de.mockapi.io/api/appBarberStyle/users</p>
 		<p>https://607a5bfdbd56a60017ba29de.mockapi.io/api/appBarberStyle/barbearia</p>
-		<p>Professor por favor se não conseguir abrir o link ou algo, me avisa por esses contatos, muito obrigada!</p>
-                <p>Contato: 71993056203 zap</p>
-	        <p> karyolene@gmail.com</p>
+           
 </div>
 </body>
 </html>
